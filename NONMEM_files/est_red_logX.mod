@@ -1,0 +1,43 @@
+$PROBLEM PK model
+$INPUT ID TIME DV AMT AGE WT
+$DATA est.dat IGNORE=@
+$SUBROUTINES ADVAN1 TRANS2
+$PK
+
+ LCL  = THETA(1) + ETA(1)
+ LV   = THETA(2)  + ETA(2)
+ ;BASCL = THETA(3)
+ ;EMAX  = THETA(4)
+ ;E50   = THETA(5)
+ ;HL    = THETA(6)
+
+ ;CL    = BASCL+TVCL*((EMAX*WT**HL)/(E50**HL+WT**HL))
+ ;V     = TVV *(WT/70)
+ CL = EXP(LCL)
+ V = EXP(LV)
+ SC    = V
+  
+$THETA
+ (0,  1)        ; TVCL
+ (0,  3)       ; TVV
+; (0, 1, 10)            ; BASCL
+; (0, 2, 10)            ; EMAX
+; (0, 25,  200)         ; E50
+; (0, 5, 20)            ; HL
+
+$OMEGA
+ 0.05 
+ 0.05 
+
+$SIGMA
+ 0.015
+ 0.0001 FIX
+
+$ERROR
+ IPRED = F
+ Y= IPRED*(1+EPS(1)) + EPS(2)
+
+;$SIM (1000) ONLYSIM NSUBPROBLEM=1
+;$TABLE ID TIME DV AMT FILE=outA.tab NOAPPEND NOPRINT NOHEADER
+$EST METHOD=1 INTER MAXEVAL=9999 SIG=3 PRINT=5 NOABORT POSTHOC
+$COV UNCONDITIONAL
