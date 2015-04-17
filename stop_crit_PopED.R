@@ -1,5 +1,5 @@
 ##Stopping function for MBAOD bridging study with 2 scaling parameters (Fixed WT hill on CL)
-stop_crit_PopED <- function(cohort_num,cohort_res,option=2, nsim=100000, age_space = c(1,2,3,4,5,6)){
+stop_crit_PopED <- function(cohort_num,cohort_res,option=2, nsim=100000, age_space = c(1,2,3,4,5,6),allow_next=T){
   if(cohort_num>1){
   print(paste("--::::Checking Stopping Criteria for Cohort", cohort_num,"::::--"))
   bpop <- cohort_res$opt_result$opt_output$poped.db$design$bpop[,2]
@@ -179,6 +179,7 @@ k=1 #to keep track of vector posistion
 
 
   xspace <- group_pass*age_space
+  if(allow_next == T) xspace[min(xspace[xspace>1])-1] <- min(xspace[xspace>1])-1
   new_xspace <- unique(c(xspace[xspace != 0],6,7))
   return(list(stop_MBAOD,new_xspace,CL_CIs,V_CIs))
   

@@ -1,5 +1,5 @@
 ##Stopping function for MBAOD bridging study with 2 scaling parameters (Fixed WT hill on CL)
-stop_critX <- function(cohort_num,cohort_res,option=2, nsim=100000, age_space = c(1,2,3,4,5,6)){
+stop_critX <- function(cohort_num,cohort_res,option=2, nsim=100000, age_space = c(1,2,3,4,5,6),allow_next=T){
   if(cohort_num>1){
   print(paste("--::::Checking Stopping Criteria for Cohort", cohort_num,"::::--"))
   results_est <- cohort_res$est_result
@@ -109,6 +109,12 @@ if(option==2){
 #setup the vector keeping track of groups which has passed  
 group_pass  <- rep(0,length(age_space))
 
+#Storing all calculated CIs in vectors for plotting later
+CL_CIs <- matrix(nrow=length(AGE_WT$AGE),ncol=4)
+colnames(CL_CIs) <- c("Age Group","PMA","2.5th","97.5th")
+V_CIs <- CL_CIs
+k=1 #to keep track of vector posistion
+
 #For all pediatric groups, group 1 is adults, hence i in 2:length(AGE_WT)
   for(i in 1:length(age_space)){
     cat("\n")
@@ -165,6 +171,11 @@ group_pass  <- rep(0,length(age_space))
        
   
       }
+      
+      CL_CIs[k,] <- c(i,age,CI_CL)
+      V_CIs[k,] <- c(i,age,CI_V)
+      k=k+1
+      
   } #end for all ages in this age group
   
   if(length(sub_group$AGE) == sub_counter){ #If parameter precision inall pediatric subgroups have been reached
@@ -191,9 +202,14 @@ group_pass  <- rep(0,length(age_space))
 
 
   xspace <- group_pass*age_space
+  #Unlocks the oldest group for which the stopping critera has not been fufulled
+  #E.g. for the MBAOD to allow adding children of group 4, the older children in group 5 must first have a good estimate
+  #Added this after the design got "stuck"
+  if(allow_next == T) xspace[min(xspace[xspace>1])-1] <- min(xspace[xspace>1])-1
+
   new_xspace <- unique(c(xspace[xspace != 0],6,7))
-  return(list(stop_MBAOD,new_xspace))
-  
+  return(list(stop_MBAOD,new_xspace,CL_CIs,V_CIs))
+
 }
 
 

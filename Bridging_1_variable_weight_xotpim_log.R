@@ -3,6 +3,9 @@
 # 25 y.o. adults with weight 70 to infants 3 monts -2 years old and
 ## simulated values (the truth) in this case will be c(TM50=80 (WEEKS),hill=2.4)
 
+##Added and testing function which allows for adding children from the agegroup one below the lowest group which has passed the
+##stoppign criteria...see stop_critX.R and stop_crit_POPED.R. This seems to reduce the total number of children.
+
 #set path to the directory where this file is located
 setwd("C:/Users/Eric Stromberg/Desktop/MBAOD_project")
 
@@ -43,12 +46,13 @@ step_1=list(
   estimate=list(target="NONMEM", model="C:/Users/Eric Stromberg/Desktop/MBAOD_project/NONMEM_files/est_red_logX.mod")
 )
 
-##Initial Design space for the age groups
+##Initial Design space for the age groups. subadults 12-18 y.o. and adults.
+##If only adults and subadults are allowed, the information about TM50 is too sparse.
 x.space <- cell(1,1)
 x.space[1,1] <- list(c(6,7))
 ###
 
-#Children 6 months, Children 1.5 years old
+#First cohort with children
 step_2 = list(
   design = list(
     groupsize = 9,
@@ -100,13 +104,10 @@ step_3 <- step_2
 step_3$optimize$parameters <- NULL
 step_3$design$groupsize <- 2
 
-# source("create.poped.database.R")
-# assignInNamespace("create.poped.database",create.poped.database, ns="PopED")
-
 
 results_mbaod <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
-                              ncohorts=100, # number of steps or cohorts in one AOD
-                              rep=100, #number of times to repeat the MBAOD simulation 
+                              ncohorts=5, # number of steps or cohorts in one AOD
+                              rep=1, #number of times to repeat the MBAOD simulation 
                               name="bridging_maturation_model_xoptim_restricted_group", 
                               description="25 steps, 1st step one group, steps 2-10 have 1 added group per step",
                               seednr=321, stop_crit_fun =stop_critX)
