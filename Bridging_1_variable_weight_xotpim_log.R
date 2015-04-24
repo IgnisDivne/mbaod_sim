@@ -25,7 +25,7 @@ source("PopED_files/poped.mod.PK.1.comp.maturation_Xlog.R")
 source("get_weight.R")
 source("stop_critX.R")
 
-
+############################################SMALL Misspecification############################################
 #Adults
 step_1=list(
   design = list(
@@ -76,13 +76,15 @@ step_2 = list(
                 ),
                 settings.db=NULL,
                 settings.opt=list(
-                  opt_xt=T,
+                  opt_xt=F,
                   opt_a=F,
                   opt_x=T,
-                  bUseRandomSearch= 1,
+                  bUseRandomSearch= 0,
                   bUseStochasticGradient = 0,
                   bUseBFGSMinimizer = 0,
-                  bUseLineSearch = 1,
+                  bUseLineSearch = 0,
+                  bUseExchangeAlgorithm=1,
+                  EACriteria = 1,
                   compute_inv=T
                 )
   ),
@@ -105,12 +107,104 @@ step_3$optimize$parameters <- NULL
 step_3$design$groupsize <- 2
 
 
-results_mbaod <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
-                              ncohorts=5, # number of steps or cohorts in one AOD
-                              rep=1, #number of times to repeat the MBAOD simulation 
-                              name="bridging_maturation_model_xoptim_restricted_group", 
+results_mbaod_small <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
+                              ncohorts=100, # number of steps or cohorts in one AOD
+                              rep=100, #number of times to repeat the MBAOD simulation 
+                              name="bridging_maturation_model_xoptim_restricted_group_small", 
                               description="25 steps, 1st step one group, steps 2-10 have 1 added group per step",
                               seednr=321, stop_crit_fun =stop_critX)
+
+
+
+#########################LARGE MIsspecification########################################
+
+#Adults
+step_1=list(
+  design = list(
+    groupsize = 100,
+    x = c(age_group=c(7)),#6=adults ##t(rbind(PMA=c(1346)),WT=c(70))),  #AGE in PMA (weeks) assuming normal 39 week pregnancy
+    xt = c(0.1, 2, 6, 12, 24)
+  ),
+  optimize=NULL,
+  simulate=list(target="NONMEM", model="C:/Users/Eric Stromberg/Desktop/MBAOD_project/NONMEM_files/sim_logX.mod",
+                data=list(dosing = list(list(AMT=1000,Time=0)),
+                          manipulation = list(expression(PMA <- age_group_2_PMA(ID,age_group)),
+                                              expression(WT <- get_weight(ID,PMA,probs = c(0.1,0.9))),
+                                              expression(AMT <- AMT*WT/70)
+                          )
+                )
+                
+  ),
+  estimate=list(target="NONMEM", model="C:/Users/Eric Stromberg/Desktop/MBAOD_project/NONMEM_files/est_red_logX.mod")
+)
+
+##Initial Design space for the age groups. subadults 12-18 y.o. and adults.
+##If only adults and subadults are allowed, the information about TM50 is too sparse.
+x.space <- cell(1,1)
+x.space[1,1] <- list(c(6,7))
+###
+
+#First cohort with children
+step_2 = list(
+  design = list(
+    groupsize = 9,
+    m=1,
+    x = c(age_group=c(6)),
+    xt = c(0.1, 2, 6, 12, 24)
+  ),
+  optimize=list(target="poped_R",
+                model = list(
+                  ff_file="PK.1.comp.maturation.ff",
+                  fError_file="feps.add.prop",
+                  fg_file="PK.1.comp.maturation.fg"
+                ),
+                design_space=list(minxt=0,
+                                  maxxt=24,
+                                  x_space = x.space
+                ),
+                parameters=list(
+                  bpop=c(TM50=50), # initial parameter guess not coming from previous step
+                  manipulation=NULL # manipulation of initial parameters
+                ),
+                settings.db=NULL,
+                settings.opt=list(
+                  opt_xt=F,
+                  opt_a=F,
+                  opt_x=T,
+                  bUseRandomSearch= 0,
+                  bUseStochasticGradient = 0,
+                  bUseBFGSMinimizer = 0,
+                  bUseLineSearch = 0,
+                  bUseExchangeAlgorithm=1,
+                  EACriteria = 1,
+                  compute_inv=T
+                )
+  ),
+  simulate=list(target="NONMEM", model="C:/Users/Eric Stromberg/Desktop/MBAOD_project/NONMEM_files/sim_logX.mod",
+                data=list(
+                  dosing = list(list(AMT=1000,Time=0)),
+                  manipulation = list(expression(PMA <- age_group_2_PMA(ID,age_group)),
+                                      expression(WT <- get_weight(ID,PMA,probs = c(0.1,0.9))),
+                                      expression(AMT <- AMT*WT/70)
+                  )
+                )                      
+                
+  ),
+  estimate=list(target="NONMEM", model="C:/Users/Eric Stromberg/Desktop/MBAOD_project/NONMEM_files/est_full_log_large.mod")
+)
+
+
+step_3 <- step_2
+step_3$optimize$parameters <- NULL
+step_3$design$groupsize <- 2
+
+
+results_mbaod_large <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
+                                ncohorts=100, # number of steps or cohorts in one AOD
+                                rep=100, #number of times to repeat the MBAOD simulation 
+                                name="bridging_maturation_model_xoptim_restricted_group_large", 
+                                description="25 steps, 1st step one group, steps 2-10 have 1 added group per step",
+                                seednr=321, stop_crit_fun =stop_critX)
 
 
 ############################################################################
@@ -136,8 +230,8 @@ devtools::load_all("C:/Users/Eric Stromberg/Desktop/WarfarinPKPD/R/MBAOD")
 source("PopED_files/poped.mod.PK.1.comp.maturation_Xlog.R")
 # load the weight estimator file
 source("get_weight.R")
+source("stop_critX.R")
 source("stop_crit_PopED.R")
-
 
 #Adults
 step_1=list(
@@ -170,7 +264,7 @@ step_2 = list(
   design = list(
     groupsize = 9,
     m=1,
-    x = c(age_group=c(6)),
+    x = c(age_group=c(7)),
     xt = c(0.1, 2, 6, 12, 24)
   ),
   optimize=list(target="poped_R",
@@ -192,30 +286,38 @@ step_2 = list(
                   opt_xt=F,
                   opt_a=F,
                   opt_x=T,
-                  bUseRandomSearch= 1,
+                  bUseRandomSearch= 0,
                   bUseStochasticGradient = 0,
                   bUseBFGSMinimizer = 0,
-                  bUseLineSearch = 1,
+                  bUseLineSearch = 0,
+                  bUseExchangeAlgorithm=1,
+                  EACriteria = 1,
                   compute_inv=T
                 )
   ),
-  simulate=NULL,
-  estimate=NULL
+  simulate=list(target="NONMEM", model="C:/Users/Eric Stromberg/Desktop/MBAOD_project/NONMEM_files/sim_logX.mod",
+                data=list(
+                  dosing = list(list(AMT=1000,Time=0)),
+                  manipulation = list(expression(PMA <- age_group_2_PMA(ID,age_group)),
+                                      expression(WT <- get_weight(ID,PMA,probs = c(0.1,0.9))),
+                                      expression(AMT <- AMT*WT/70)
+                  )
+                )                      
+                
+  ),
+  estimate=list(target="NONMEM", model="C:/Users/Eric Stromberg/Desktop/MBAOD_project/NONMEM_files/est_full_log_OD.mod")
 )
 
+
 step_3 <- step_2
-step_3$optimize$parameters <- list(
-                                    bpop=c(CL = 1.122,V=5.098,TM50=75),
-                                    d=c(0.0950218, 0.0612376),
-                                    sigma=matrix(c(0.0144145,0,0,0.0001),nrow=2,byrow=T),
-                                    manipulation=NULL)
-step_3$design$groupsize <- 1
+step_3$optimize$parameters <- NULL
+step_3$design$groupsize <- 2
 
 
 
-results_all_OD_2 <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
-                              ncohorts=3, # number of steps or cohorts in one AOD
-                              rep=1, #number of times to repeat the MBAOD simulation 
+results_all_OD <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
+                              ncohorts=100, # number of steps or cohorts in one AOD
+                              rep=100, #number of times to repeat the MBAOD simulation 
                               name="bridging_maturation_model_Xlog_OD", 
                               description="10 steps, 1st step one group, steps 2-10 have 2 groups per step",
                               seednr=321, stop_crit_fun = stop_crit_PopED)
@@ -227,7 +329,21 @@ results_all_OD_2 <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anythin
 # library(grid)
 library(ggplot2)
 #library(reshape2)
-full_design_list <- lapply(mapply("[[",design_list,design_name,SIMPLIFY=FALSE),function(x){do.call(create_design,x)})
+
+#############################################
+#########Total Number of children plots######
+############################################
+nID_tot <-1:100
+for(i in 1:100){
+  
+  nID_tot[i] <- sum(results_mbaod_large[[paste("iteration_",i,sep="")]]$final_design$groupsize)-100
+}
+df <- data.frame(nID = sort(nID_tot),power = rank(sort(nID_tot)))
+
+
+p <- ggplot(data=df, aes(x=nID,y=power))
+p <- p+geom_line()
+
 
 #################################
 ######## optimized designs
@@ -245,9 +361,9 @@ model = list(
 )
 
 parameters_true=list(
-  bpop=c(CL=1,V=20,EMAX=2,EC50=25,HILL=5),
+  bpop=c(CL=1.06,V=5,TM50=100),
   d=c(0.05,0.05),
-  sigma=c(0.015,0.0015)
+  sigma=c(0.015,0.00001)
 )
 
 poped.db <- do.call(create.poped.database,c(all_designs,model,parameters_true))

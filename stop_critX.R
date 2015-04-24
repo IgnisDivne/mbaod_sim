@@ -1,6 +1,6 @@
 ##Stopping function for MBAOD bridging study with 2 scaling parameters (Fixed WT hill on CL)
 stop_critX <- function(cohort_num,cohort_res,option=2, nsim=100000, age_space = c(1,2,3,4,5,6),allow_next=T){
-  if(cohort_num>1){
+  
   print(paste("--::::Checking Stopping Criteria for Cohort", cohort_num,"::::--"))
   results_est <- cohort_res$est_result
   
@@ -21,6 +21,7 @@ stop_critX <- function(cohort_num,cohort_res,option=2, nsim=100000, age_space = 
   SEthetav  <- results_est$sethetas[2]
   SETM50    <- results_est$sethetas[3]
   
+  if(!is.null(results_est$cov_mat)){  
   corr <- results_est$cov_mat[1,3]
   lcl_params <- c("THETA1","THETA3")#,"THETA4")
   
@@ -316,7 +317,7 @@ if(option==3){
 print("--------:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-------")
 }else{
   stop_mbaod <- FALSE
-  new_xspace <- NULL
+  new_xspace <- unlist(cohort_res$opt_result$opt_output$poped.db$design$discrete_x[cohort_num])
   return(list(stop_mbaod,new_xspace))
 }
 
