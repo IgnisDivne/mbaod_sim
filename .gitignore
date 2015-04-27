@@ -45,4 +45,5 @@ Temporary Items
 .RData
 .Rhistory
 *.Rproj
+*_run_dir_*
 
