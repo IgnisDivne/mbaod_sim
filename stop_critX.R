@@ -21,7 +21,7 @@ stop_critX <- function(cohort_num,cohort_res,option=2, nsim=100000, age_space = 
   SEthetav  <- results_est$sethetas[2]
   SETM50    <- results_est$sethetas[3]
   
-  if(!is.null(results_est$cov_mat)){  
+  if(!is.null(results_est$cov_mat)  & cohort_num>1){  
   corr <- results_est$cov_mat[1,3]
   lcl_params <- c("THETA1","THETA3")#,"THETA4")
   

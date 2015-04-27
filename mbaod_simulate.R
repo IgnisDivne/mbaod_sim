@@ -230,7 +230,7 @@ mbaod_simulate <- function(cohorts,
           est_result <- xpose4::read.lst(file.path(cohort_dir,"est.lst"))
           
           ## get cov matrix
-          cov_mat <- read_covmat(file.path(cohort_dir,"est.cov"))
+          cov_mat <- read_covmat(cohort_dir)
 
           cohort_res$est_result <- est_result
           cohort_res$est_result$cov_mat <- cov_mat
@@ -331,11 +331,10 @@ mbaod_simulate <- function(cohorts,
   return(results_all)
 }
 
-read_covmat<- function(cov_dir){
+read_covmat<- function(cohort_dir){
 covmat <- tryCatch({
- read.table(cov_dir,skip=1,header = T,row.names=1,check.names=T)
- row.names(cov_mat) <- names(cov_mat)},
- error=function(cond){
+ read.table(file.path(cohort_dir,"est.cov"),skip=1,header = T,row.names=1,check.names=T)
+}, error=function(cond){
      message("Failed to read Covariance Matrix")
      return(NULL)
  }
