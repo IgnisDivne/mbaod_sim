@@ -82,7 +82,6 @@ mbaod_simulate <- function(cohorts,
       cohort_res <- list()
       
       cohort <- cohorts[[i]]
-
       
       
       #----------  optimize the cohort --------
@@ -115,7 +114,7 @@ mbaod_simulate <- function(cohorts,
           #### Create design database --------------
           # add prior FIM here if prev_fim=T
           design.db <- create_design_database(tot_design, tot_space, parameters, cohort)
-          
+                  
           #### optimize cohort ------------
           opt_output  <- do.call(poped_optimize,
                                  c(poped.db=list(design.db),
@@ -148,7 +147,6 @@ mbaod_simulate <- function(cohorts,
         cat('    ----------------------\n')
         cat('\n')
         
-
         
         
         if(cohort$simulate$target=="poped_R"){
@@ -235,33 +233,29 @@ mbaod_simulate <- function(cohorts,
           cohort_res$est_result <- est_result
           cohort_res$est_result$cov_mat <- cov_mat
           
-
-
-
-
         }
       }
 
       ####INSERT STOPPING CRITERIA####
-     if(!is.null(stop_crit_fun)){
-          stop_res_tmp <- stop_crit_fun(i,cohort_res)     #returns list with stop_MBAOD = T/F and new x.space
-          stop_res[[paste("cohort_",i,sep="")]] <- stop_res_tmp
-          aod_res[[paste("cohort_",i,sep="")]] <- cohort_res
-       if(stop_res_tmp[1]==TRUE){
-         break
-         }else{
-              if(i<length(cohorts) & i>1){    #if there is more cohorts, change xspace for the next cohort to allow any new agegroups
-                  cohorts[[i+1]]$optimize$design_space$x_space[1,1] <- stop_res_tmp[2]
-                  print("Updating x_space for next cohort to:")
-                  print(unlist(stop_res_tmp[2]))
-              }
-         }
-
-     }else{
-     aod_res[[paste("cohort_",i,sep="")]] <- cohort_res
-     }
-
-    ####END STOPPING CRITERIA#####
+      if(!is.null(stop_crit_fun)){
+        stop_res_tmp <- stop_crit_fun(i,cohort_res)     #returns list with stop_MBAOD = T/F and new x.space
+        stop_res[[paste("cohort_",i,sep="")]] <- stop_res_tmp
+        aod_res[[paste("cohort_",i,sep="")]] <- cohort_res
+        if(stop_res_tmp[1]==TRUE){
+          break
+        }else{
+          if(i<length(cohorts) & i>1){    #if there is more cohorts, change xspace for the next cohort to allow any new agegroups
+            cohorts[[i+1]]$optimize$design_space$x_space[1,1] <- stop_res_tmp[2]
+            print("Updating x_space for next cohort to:")
+            print(unlist(stop_res_tmp[2]))
+          }
+        }
+        
+      }else{
+        aod_res[[paste("cohort_",i,sep="")]] <- cohort_res
+      }
+      
+      ####END STOPPING CRITERIA#####
     } # end cohort
     
     ## summarize results for one iteration
