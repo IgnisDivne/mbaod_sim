@@ -98,8 +98,11 @@ if(option==1){
 if(option==2){
   
   ###This block calculates the total number of individuals in each age group
-  
-  gs      <- cohort_res$opt_result$opt_output$poped.db$downsized.design$groupsize
+  if(packageVersion("PopED")<0.2){
+    gs      <- cohort_res$opt_result$opt_output$poped.db$downsized.design$groupsize
+  } else {
+    gs      <- cohort_res$opt_result$opt_output$poped.db$design$groupsize
+  }
   n_adults <- gs[1]
   nsub <- sum(gs) - n_adults
   WT <- c(6.906,8.4,9.29,11.11,13.72,15.96,18.14,21.15,23.96,26.74,31.59,36.03,40.53,47.06,51.908,58.02,62.78,66.96,69.11,71.48,73.49)
@@ -206,8 +209,9 @@ k=1 #to keep track of vector posistion
   #Unlocks the oldest group for which the stopping critera has not been fufulled
   #E.g. for the MBAOD to allow adding children of group 4, the older children in group 5 must first have a good estimate
   #Added this after the design got "stuck"
-  if(allow_next == T) xspace[min(xspace[xspace>1])-1] <- min(xspace[xspace>1])-1
-
+  if(allow_next == T) {
+    if(sum(xspace)>0) xspace[min(xspace[xspace>1])-1] <- min(xspace[xspace>1])-1
+  }
   new_xspace <- unique(c(xspace[xspace != 0],6,7))
   return(list(stop_MBAOD,new_xspace,CL_CIs,V_CIs))
 
@@ -219,7 +223,11 @@ k=1 #to keep track of vector posistion
 
 
 if(option==3){  
-  gs      <- cohort_res$opt_result$opt_output$poped.db$downsized.design$groupsize
+  if(packageVersion("PopED")<0.2){
+    gs      <- cohort_res$opt_result$opt_output$poped.db$downsized.design$groupsize
+  } else {
+    gs      <- cohort_res$opt_result$opt_output$poped.db$design$groupsize
+  }
   n_adults <- gs[1]
   nsub <- sum(gs) - n_adults
   WT <- c(6.906,8.4,9.29,11.11,13.72,15.96,18.14,21.15,23.96,26.74,31.59,36.03,40.53,47.06,51.908,58.02,62.78,66.96,69.11,71.48,73.49)
