@@ -109,6 +109,7 @@ weight <-1: length(PMA)
   
 df_u$weight <- weight
 df_wt <- merge(df,df_u,by="ID")
+df_wt <-df_wt[order(df_wt$ID),]
 return(df_wt$weight)
 
 }
@@ -334,8 +335,8 @@ get_age_from_median_weight <- function(WT){
 }
 
 age_group_2_PMA <- function(ID,age_group,maxmin =F){
-  age_group <- age_group +1
-  
+ # age_group <- age_group +1
+
   PMA_all <- 1:length(age_group)
   age_group_all <- age_group
   df <- data.frame(ID,age_group_all)
@@ -346,12 +347,11 @@ age_group_2_PMA <- function(ID,age_group,maxmin =F){
  
   #age_group=0          1       2        3    4     5     6    7
            #default, 3-<6mo,6-<12mo, 1-<2y,2-<6y,6-<12y,12-<18,20-29y
-  ages_min <- c(1031.4,53.05,66.1,92.2,144.4,353.3,666.5,1031.4)
-  ages_max <- c(1513.8,ages_min[3:length(ages_min)], 1513.8)
-  if(maxmin==F)
+  ages_min <- c(53.05,66.1,92.2,144.4,353.3,666.5,1031.4)
+  ages_max <- c(ages_min[2:length(ages_min)], 1513.8)
   df_u$PMA <- runif(length(age_group),ages_min[age_group],ages_max[age_group])
   df_out <- merge(df,df_u,by="ID")
-  
+  df_out <- df_out[order(df_out$ID),]
   return(df_out$PMA)
 }
   
@@ -379,4 +379,84 @@ rtnorm <- function(n, mean, sd, probs,median=FALSE){
     round(quantile(rnorm(100000,mean,sd),probs=0.5),digits=1)
   }
   
+}
+
+
+
+get_age_group_from_median_weight <- function(WT){
+  
+  AGE<- 1:length(WT)
+
+  
+  for (i in 1:length(WT)){  
+
+    #2<6 month
+    if(WT[i] == 6.906){
+      AGE[i] <- 1
+    }#6<9 month
+    else if (WT[i]== 8.4){
+      AGE[i] <- 2
+    }#9<12 month
+    else if (WT[i] == 9.29){
+      AGE[i] <- 2
+    } #1 year
+    else if (WT[i] == 11.11){
+      AGE[i] <- 3
+    } #2 year
+    else if (WT[i] == 13.72){
+      AGE[i] <- 4 
+    } #3 year
+    else if (WT[i] == 15.96){
+      AGE[i] <- 4
+    }  #4 year
+    else if (WT[i] == 18.14){
+      AGE[i] <- 4
+    }#5 year
+    else if (WT[i] == 21.15){
+      AGE[i] <- 4
+    }#6 year
+    else if (WT[i] == 23.96){
+      AGE[i] <- 5
+    }#7 year
+    else if (WT[i] == 26.74){
+      AGE[i] <- 5
+    }#8 year
+    else if (WT[i] == 31.59){
+      AGE[i] <- 5
+    }#9 year
+    else if (WT[i] == 36.03){
+      AGE[i] <- 5
+    }#10year
+    else if (WT[i] == 40.53){
+      AGE[i] <- 5
+    }#11 year
+    else if (WT[i] == 47.06){
+      AGE[i] <- 5
+    }#12year
+    else if (WT[i] == 51.908){
+      AGE[i] <- 6
+    }#13 year
+    else if (WT[i] ==   58.02){
+      AGE[i] <- 6
+    }#14 year
+    else if (WT[i] ==   62.78){
+      AGE[i] <- 6
+    }#15 year
+    else if (WT[i] ==   66.96){
+      AGE[i] <- 6
+    }#16 year
+    else if (WT[i] ==   69.11){
+      AGE[i] <- 6
+    }#17 year
+    else if (WT[i] ==   71.48){
+      AGE[i] <- 6
+    }#18 year
+    else if (WT[i] ==   73.49){
+      AGE[i] <- 6
+    }#20-29
+    else if ( WT[i] == 78.367){
+      AGE[i] <- 7
+    }
+  }
+  return(AGE)
 }
