@@ -1,4 +1,4 @@
-covmat <- read.table("C:/Users/Eric Stromberg/Desktop/MBAOD_project/bridging_maturation_model_xoptim_restricted_group_small_v2_run_dir_1/rep_1/cohort_4/est.cov"
+covmat <- read.table("est.cov"
                      ,skip=1,header = T,row.names=1,check.names=T)
 
 
