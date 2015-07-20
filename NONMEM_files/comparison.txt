@@ -1,0 +1,99 @@
+
+Linear, New
+[1] "___ Pediatric Sub Population 1 : Children of age 3 to <5 months ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 3 to <5 months :"
+[1] 0.6720891 1.4878979
+[1] "Scaled logV for age 3 to <5 months :"
+[1] 0.9502137 1.0523948
+[1] "Stopping criteria NOT reached for population 1"
+
+[1] "___ Pediatric Sub Population 2 : Children of age 6 to <12 months ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 6 to <12 months :"
+[1] 0.702938 1.422601
+[1] "Scaled logV for age 6 to <12 months :"
+[1] 0.9502137 1.0523948
+[1] "Stopping criteria NOT reached for population 2"
+
+[1] "___ Pediatric Sub Population 3 : Children of age 1 to <2 years ___"
+[1] "Stopping criteria reached for sub population 3"
+
+[1] "___ Pediatric Sub Population 4 : Children of age 2 to <6 years ___"
+[1] "Stopping criteria reached for sub population 4"
+
+[1] "___ Pediatric Sub Population 5 : Children of age 6 to <12 years ___"
+[1] "Stopping criteria reached for sub population 5"
+
+[1] "___ Pediatric Sub Population 6 : Children of age 12 to 18 years ___"
+[1] "Stopping criteria reached for sub population 6"
+
+
+
+SIM nonlinear 1
+[1] "___ Pediatric Sub Population 1 : Children of age 3 to <5 months ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 3 to <5 months :"
+[1] 0.6542655 1.5284315
+[1] "Scaled logV for age 3 to <5 months :"
+[1] 0.9509211 1.0516120
+[1] "Stopping criteria NOT reached for population 1"
+
+[1] "___ Pediatric Sub Population 2 : Children of age 6 to <12 months ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 6 to <12 months :"
+[1] 0.6905489 1.4481233
+[1] "Scaled logV for age 6 to <12 months :"
+[1] 0.9509211 1.0516120
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 6 to <12 months :"
+[1] 0.7044937 1.4194592
+[1] "Scaled logV for age 6 to <12 months :"
+[1] 0.9509211 1.0516120
+[1] "Stopping criteria NOT reached for population 2"
+
+[1] "___ Pediatric Sub Population 3 : Children of age 1 to <2 years ___"
+[1] "Stopping criteria reached for sub population 3"
+
+[1] "___ Pediatric Sub Population 4 : Children of age 2 to <6 years ___"
+[1] "Stopping criteria reached for sub population 4"
+
+[1] "___ Pediatric Sub Population 5 : Children of age 6 to <12 years ___"
+[1] "Stopping criteria reached for sub population 5"
+
+[1] "___ Pediatric Sub Population 6 : Children of age 12 to 18 years ___"
+[1] "Stopping criteria reached for sub population 6"
+
+ SIM nonlinear 2
+[1] "___ Pediatric Sub Population 1 : Children of age 3 to <5 months ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 3 to <5 months :"
+[1] 0.6559884 1.5244173
+[1] "Scaled logV for age 3 to <5 months :"
+[1] 0.9503351 1.0522604
+[1] "Stopping criteria NOT reached for population 1"
+
+[1] "___ Pediatric Sub Population 2 : Children of age 6 to <12 months ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 6 to <12 months :"
+[1] 0.6917321 1.4456464
+[1] "Scaled logV for age 6 to <12 months :"
+[1] 0.9503351 1.0522604
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 6 to <12 months :"
+[1] 0.7055369 1.4173604
+[1] "Scaled logV for age 6 to <12 months :"
+[1] 0.9503351 1.0522604
+[1] "Stopping criteria NOT reached for population 2"
+
+[1] "___ Pediatric Sub Population 3 : Children of age 1 to <2 years ___"
+[1] "Stopping criteria reached for sub population 3"
+
+[1] "___ Pediatric Sub Population 4 : Children of age 2 to <6 years ___"
+[1] "Stopping criteria reached for sub population 4"
+
+[1] "___ Pediatric Sub Population 5 : Children of age 6 to <12 years ___"
+[1] "Stopping criteria reached for sub population 5"
+
+[1] "___ Pediatric Sub Population 6 : Children of age 12 to 18 years ___"
+[1] "Stopping criteria reached for sub population 6"

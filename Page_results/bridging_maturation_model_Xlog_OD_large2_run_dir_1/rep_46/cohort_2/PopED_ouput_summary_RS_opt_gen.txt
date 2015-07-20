@@ -1,0 +1,156 @@
+PopED Results 
+
+        2015-05-20 17:06:36
+
+==============================================================================
+Model description : PopED model 
+
+Model Sizes : 
+Number of individual model parameters                  g[j]    : Ng    = 6
+Number of population model fixed parameters            bpop[j] : Nbpop = 3
+Number of population model random effects parameters   b[j]    : Nb    = 2
+
+Typical Population Parameters:
+bpop[1]: 0.9684 
+bpop[2]: 3.108 
+bpop[3]:   150 
+
+Between Subject Variability matrix D (variance units) 
+0.0501117 0.0000000
+0.0000000 0.0530926
+
+Diagonal Elements of D [sqrt(param)]:
+D[1,1]: 0.05011 [0.2239] 
+D[2,2]: 0.05309 [0.2304] 
+
+Residual Unexplained Variability matrix SIGMA (variance units) : 
+0.0146144 0.0000000
+0.0000000 0.0001000
+
+Diagonal Elements of SIGMA [sqrt(param)]:
+SIGMA[1,1]: 0.01461 [0.1209] 
+SIGMA[2,2]: 0.0001 [ 0.01] 
+
+==============================================================================
+Experiment description (design and design space)
+
+Numer of individuals: 109
+Number of groups (individuals with same design): 2
+Numer of individuals per group:
+     Group 1: 100
+     Group 2: 9
+Numer of samples per group:
+     Group 1: 5
+     Group 2: 5
+Number of discrete experimental variables: 1
+Number of model covariates: 0
+
+Initial Sampling Schedule
+Group 1 :    0.1      2      6     12     24
+Group 2 :    0.1      2      6     12     24
+
+Discrete Variables  (possible vales):
+Group 1: 7 (7)
+Group 2: 6 ( 6  7 )
+
+===============================================================================
+Initial design evaluation
+
+OFV = 1.22888e+16
+
+Efficiency criterion [usually defined as OFV^(1/npar)]  = 480.38
+
+Initial design expected parameter variance 
+and relative standard error (%RSE)
+    Parameter     Values   Variance       RSE
+      bpop[1]     0.9684   3.87e-02    20.314
+      bpop[2]     3.1076   5.42e-04     0.749
+      bpop[3]   150.0000   7.22e+04   179.113
+       D[1,1]     0.0501   5.15e-05    14.321
+       D[2,2]     0.0531   6.40e-05    15.065
+   SIGMA[1,1]     0.0146   1.30e-06     7.815
+
+==============================================================================
+Criterion Specification
+
+OFV calculation for FIM: 1 
+  1=Determinant of FIM,
+  4=log determinant of FIM,
+  6=determinant of interesting part of FIM (Ds)
+
+Approximation method: 0
+  0=FO, 
+  1=FOCE, 
+  2=FOCEI, 
+  3=FOI
+
+Fisher Information Matrix type: 1
+  0=Full FIM,
+  1=Reduced FIM,
+  2=weighted models,
+  3=Loc models,
+  4=reduced FIM with derivative of SD of sigma as pfim,
+  5=FULL FIM parameterized with A,B,C matrices & derivative of variance,
+  6=Calculate one model switch at a time, good for large matrices,
+  7=Reduced FIM parameterized with A,B,C matrices & derivative of variance
+
+Design family: 1
+  D-family design (1) or 
+  ED-familty design (0) 
+  (with or without parameter uncertainty)
+
+==============================================================================
+Optimization of design parameters
+
+* Optimize Discrete variables
+
+
+*****************************
+            Line Search
+
+
+Line search run time: 0.45 seconds
+***************************
+
+===============================================================================
+FINAL RESULTS
+
+
+Optimized Discrete Variables:
+Group 1: 7
+Group 2: 6
+
+ FIM: 
+ 2.058258e+03 -9.025578e+01 -1.497481e+00  0.000000e+00  0.000000e+00  0.000000e+00
+-9.025578e+01  1.848924e+03  6.563329e-02  0.000000e+00  0.000000e+00  0.000000e+00
+-1.497481e+00  6.563329e-02  1.103342e-03  0.000000e+00  0.000000e+00  0.000000e+00
+ 0.000000e+00  0.000000e+00  0.000000e+00  1.943314e+04  3.736818e+01  3.647666e+03
+ 0.000000e+00  0.000000e+00  0.000000e+00  3.736818e+01  1.568128e+04  6.160070e+03
+ 0.000000e+00  0.000000e+00  0.000000e+00  3.647666e+03  6.160070e+03  7.696424e+05
+
+
+Inverse(FIM):
+ 3.869548e-02  2.468107e-05  5.251691e+01  0.000000e+00  0.000000e+00  0.000000e+00
+ 2.468107e-05  5.420155e-04  1.255420e-03  0.000000e+00  0.000000e+00  0.000000e+00
+ 5.251691e+01  1.255420e-03  7.218339e+04  0.000000e+00  0.000000e+00  0.000000e+00
+ 0.000000e+00  0.000000e+00  0.000000e+00  5.150431e-05 -2.692832e-08 -2.438855e-07
+ 0.000000e+00  0.000000e+00  0.000000e+00 -2.692832e-08  6.397147e-05 -5.118877e-07
+ 0.000000e+00  0.000000e+00  0.000000e+00 -2.438855e-07 -5.118877e-07  1.304558e-06
+
+det(FIM) = 1.22888e+16
+
+Efficiency criterion [usually defined as OFV^(1/npar)]  = 480.38
+
+Efficiency (final_design/initial_design): 1
+
+Expected parameter variance 
+and relative standard error (%RSE):
+    Parameter     Values   Variance       RSE   RSE_initial_design
+      bpop[1]     0.9684   3.87e-02    20.314               20.314
+      bpop[2]     3.1076   5.42e-04     0.749                0.749
+      bpop[3]   150.0000   7.22e+04   179.113              179.113
+       D[1,1]     0.0501   5.15e-05    14.321               14.321
+       D[2,2]     0.0531   6.40e-05    15.065               15.065
+   SIGMA[1,1]     0.0146   1.30e-06     7.815                7.815
+
+Total running time: 0.47 seconds
