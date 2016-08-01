@@ -27,6 +27,25 @@ param_sim <- function(CL=1.0,V=3,sdCL=0.05,sdV=0.05,TM50=75,PMA,WT,p=F){
   return(list(LCLi,LVi))
   
 }
+
+size_mat_sim <- function(CL=1, V=3,tm50=38.5,hill=4.6,sdCL = 0.05,sdV = 0.05,age,wt){
+  
+  LCL <-rnorm(length(age),CL,sqrt(sdCL))
+  LV <- rnorm(length(age),V,sqrt(sdV))
+  HILL<-hill
+  TM50 <- tm50
+  
+  
+  
+  CL <-  base * (wt/70)^0.75 * (age^HILL)/(age^HILL+TM50^HILL)
+  V  <-  V *(wt/70)
+  
+  df <- data.frame(CL,V)
+  return(df)
+}
+
+
+
 ##Function to get power
 get_power <- function(sdlogX){
   f<-function(s,n,sigma){

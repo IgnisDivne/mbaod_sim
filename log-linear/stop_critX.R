@@ -1,8 +1,11 @@
 ##Stopping function for MBAOD bridging study with 2 scaling parameters (Fixed WT hill on CL)
-stop_critX <- function(cohort_num,cohort_res,option=2, nsim=100000, age_space = c(1,2,3,4,5,6),allow_next=T,power=F){
+stop_critX <- function(cohort_num,cohort_res,option=2, nsim=100000, age_space = c(1,2,3,4,5,6),allow_next=T,power=F, alpha=0.05, corr=1){
   
   print(paste("--::::Checking Stopping Criteria for Cohort", cohort_num,"::::--"))
   results_est <- cohort_res$est_result
+  
+  ###NEw Structure to store the true individual LCL and LV values from each simulation.
+
   
   omega <- results_est$omega
   omega <- matrix_from_triangle(omega)
@@ -103,9 +106,14 @@ if(option==1){
         varlcl=dfout%*%cov_lcl%*%t(dfout)
         SElcl=sqrt(varlcl)
         
+        if(corr == 1){
+          alpha <- alpha/length(age_space)
+        }
+        
+        
         #df <- nsub -num_params. is num_params 8? for this model 4 thetas, 2 omegas 2 sigmas
-        CI_CL=c(exp(-qt(0.975,nsub-6)*SElcl),exp(qt(0.975,nsub-6)*SElcl))
-        CI_V=c(exp(-qt(0.975,nsub-6)*SEthetav),exp(qt(0.975,nsub-6)*SEthetav))
+        CI_CL=c(exp(-qt((1-alpha/2),nsub-6)*SElcl),exp(qt((1-alpha/2),nsub-6)*SElcl))
+        CI_V=c(exp(-qt((1-alpha/2),nsub-6)*SEthetav),exp(qt((1-alpha/2),nsub-6)*SEthetav))
         
         
         
@@ -249,9 +257,14 @@ k=1 #to keep track of vector posistion
         varlcl=dfout%*%cov_lcl%*%t(dfout)
         SElcl=sqrt(varlcl)
   
+        if(corr == 1){
+          alpha <- alpha/length(age_space)
+        }
+        
+        
         #df <- nsub -num_params. is num_params 8? for this model 4 thetas, 2 omegas 2 sigmas
-        CI_CL=c(exp(-qt(0.975,nsub-6)*SElcl),exp(qt(0.975,nsub-6)*SElcl))
-        CI_V=c(exp(-qt(0.975,nsub-6)*SEthetav),exp(qt(0.975,nsub-6)*SEthetav))
+        CI_CL=c(exp(-qt((1-alpha/2),nsub-6)*SElcl),exp(qt((1-alpha/2),nsub-6)*SElcl))
+        CI_V=c(exp(-qt((1-alpha/2),nsub-6)*SEthetav),exp(qt((1-alpha/2),nsub-6)*SEthetav))
         
     
 

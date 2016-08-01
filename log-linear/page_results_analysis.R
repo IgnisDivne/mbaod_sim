@@ -421,15 +421,6 @@ for(i in 1:100){
 power_true_od <- sum(stop_crit_res)   #72
 
 
-#Small Misspecification results
-load("Page_results/bridging_maturation_model_eval_OD_small_run_dir_5/results_all.Rdata")
-stop_crit_res <- 1:100
-for(i in 1:100){
-  stop_crit_res[i] <- results_all[[paste("iteration_",i,sep="")]]$stop_res$cohort_1[[1]]
-  
-}
-power_small_od <- sum(stop_crit_res)   #72
-
 
 #Large Misspecification results
 load("Page_results/bridging_maturation_model_eval_OD_large2_run_dir_1/results_all.Rdata")

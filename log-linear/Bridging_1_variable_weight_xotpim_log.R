@@ -8,8 +8,6 @@
 
 
 
-#Change path to the directory where this file is located
-setwd("C:/Users/erist836/Documents/GitHub/mbaod_sim")
 
 # remove things from the global environment
 rm(list=ls())
@@ -25,8 +23,8 @@ devtools::load_all("C:/Users/erist836/Documents/GitHub/MBAOD/R")
 source("PopED_files/poped.mod.PK.1.comp.maturation_Xlog.R")
 # load the weight estimator file
 source("get_weight.R")
-source("stop_critX.R")
-source("stop_crit_PopED.R")
+source("stop_critX_power.R")
+
 
 ############################################RUN THIS SECTION FOR MBAOD WITH SMALL Misspecification############################################
 #Adults
@@ -72,7 +70,7 @@ step_2 = list(
                                   x_space = x.space
                                   ),
                 parameters=list(
-                  bpop=c(TM50=75), # initial parameter, guess true value = 100 CHANGE HERE IF YOU WANT A DIFFERENT GUESS
+                  bpop=c(TM50=100), # initial parameter, guess true value = 100 CHANGE HERE IF YOU WANT A DIFFERENT GUESS
                   manipulation=NULL 
                 ),
                 settings.db=list(
@@ -101,7 +99,7 @@ step_2 = list(
                          )                      
                 
   ),
-  estimate=list(target="NONMEM", model="NONMEM_files/est_full_log_small.mod")
+  estimate=list(target="NONMEM", model="NONMEM_files/est_full_log_true.mod")
 )
 
 
@@ -111,11 +109,11 @@ step_3$design$groupsize <- 2
 
 
 results_mbaod_small <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
-                              ncohorts=3, # number of steps or cohorts in one AOD
-                              rep=1, #number of times to repeat the MBAOD simulation 
+                              ncohorts=100, # number of steps or cohorts in one AOD
+                              rep=100, #number of times to repeat the MBAOD simulation 
                               name="bridging_maturation_model_xoptim_restricted_group_small", 
                               description="25 steps, 1st step one group, steps 2-10 have 1 added group per step",
-                              seednr=321,stop_crit_fun =stop_critX)
+                              seednr=321,stop_crit_fun =stop_critX,zip_directories=F)
 
 
 

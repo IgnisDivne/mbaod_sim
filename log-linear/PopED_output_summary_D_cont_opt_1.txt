@@ -1,0 +1,411 @@
+PopED Results 
+
+        2016-06-11 09:36:28
+
+==============================================================================
+Model description : PopED model 
+
+Model Sizes : 
+Number of individual model parameters                  g[j]    : Ng    = 6
+Number of population model fixed parameters            bpop[j] : Nbpop = 3
+Number of population model random effects parameters   b[j]    : Nb    = 2
+
+Typical Population Parameters:
+bpop[1]:     1 
+bpop[2]:     3 
+bpop[3]:   150 
+
+Between Subject Variability matrix D (variance units) 
+0.05 0.00
+0.00 0.05
+
+Diagonal Elements of D [sqrt(param)]:
+D[1,1]:  0.05 [0.2236] 
+D[2,2]:  0.05 [0.2236] 
+
+Residual Unexplained Variability matrix SIGMA (variance units) : 
+0.0150 0.0000
+0.0000 0.0001
+
+Diagonal Elements of SIGMA [sqrt(param)]:
+SIGMA[1,1]: 0.015 [0.1225] 
+SIGMA[2,2]: 0.0001 [ 0.01] 
+
+==============================================================================
+Experiment description (design and design space)
+
+Numer of individuals: 37
+Number of groups (individuals with same design): 37
+Numer of individuals per group:
+     Group 1: 1
+     Group 2: 1
+     Group 3: 1
+     Group 4: 1
+     Group 5: 1
+     Group 6: 1
+     Group 7: 1
+     Group 8: 1
+     Group 9: 1
+     Group 10: 1
+     Group 11: 1
+     Group 12: 1
+     Group 13: 1
+     Group 14: 1
+     Group 15: 1
+     Group 16: 1
+     Group 17: 1
+     Group 18: 1
+     Group 19: 1
+     Group 20: 1
+     Group 21: 1
+     Group 22: 1
+     Group 23: 1
+     Group 24: 1
+     Group 25: 1
+     Group 26: 1
+     Group 27: 1
+     Group 28: 1
+     Group 29: 1
+     Group 30: 1
+     Group 31: 1
+     Group 32: 1
+     Group 33: 1
+     Group 34: 1
+     Group 35: 1
+     Group 36: 1
+     Group 37: 1
+Numer of samples per group:
+ Number of discrete experimental variables: 1
+Number of model covariates: 0
+
+Initial Sampling Schedule
+Group 1 :    0.1      2      6     12     24
+Group 2 :    0.1      2      6     12     24
+Group 3 :    0.1      2      6     12     24
+Group 4 :    0.1      2      6     12     24
+Group 5 :    0.1      2      6     12     24
+Group 6 :    0.1      2      6     12     24
+Group 7 :    0.1      2      6     12     24
+Group 8 :    0.1      2      6     12     24
+Group 9 :    0.1      2      6     12     24
+Group 10 :    0.1      2      6     12     24
+Group 11 :    0.1      2      6     12     24
+Group 12 :    0.1      2      6     12     24
+Group 13 :    0.1      2      6     12     24
+Group 14 :    0.1      2      6     12     24
+Group 15 :    0.1      2      6     12     24
+Group 16 :    0.1      2      6     12     24
+Group 17 :    0.1      2      6     12     24
+Group 18 :    0.1      2      6     12     24
+Group 19 :    0.1      2      6     12     24
+Group 20 :    0.1      2      6     12     24
+Group 21 :    0.1      2      6     12     24
+Group 22 :    0.1      2      6     12     24
+Group 23 :    0.1      2      6     12     24
+Group 24 :    0.1      2      6     12     24
+Group 25 :    0.1      2      6     12     24
+Group 26 :    0.1      2      6     12     24
+Group 27 :    0.1      2      6     12     24
+Group 28 :    0.1      2      6     12     24
+Group 29 :    0.1      2      6     12     24
+Group 30 :    0.1      2      6     12     24
+Group 31 :    0.1      2      6     12     24
+Group 32 :    0.1      2      6     12     24
+Group 33 :    0.1      2      6     12     24
+Group 34 :    0.1      2      6     12     24
+Group 35 :    0.1      2      6     12     24
+Group 36 :    0.1      2      6     12     24
+Group 37 :    0.1      2      6     12     24
+
+Discrete Variables  (possible vales):
+Group 1: 6 ( 1  2  3  4  5  6  7 )
+Group 2: 6 ( 1  2  3  4  5  6  7 )
+Group 3: 6 ( 1  2  3  4  5  6  7 )
+Group 4: 6 ( 1  2  3  4  5  6  7 )
+Group 5: 6 ( 1  2  3  4  5  6  7 )
+Group 6: 6 ( 1  2  3  4  5  6  7 )
+Group 7: 6 ( 1  2  3  4  5  6  7 )
+Group 8: 6 ( 1  2  3  4  5  6  7 )
+Group 9: 6 ( 1  2  3  4  5  6  7 )
+Group 10: 6 ( 1  2  3  4  5  6  7 )
+Group 11: 6 ( 1  2  3  4  5  6  7 )
+Group 12: 6 ( 1  2  3  4  5  6  7 )
+Group 13: 6 ( 1  2  3  4  5  6  7 )
+Group 14: 6 ( 1  2  3  4  5  6  7 )
+Group 15: 6 ( 1  2  3  4  5  6  7 )
+Group 16: 6 ( 1  2  3  4  5  6  7 )
+Group 17: 6 ( 1  2  3  4  5  6  7 )
+Group 18: 6 ( 1  2  3  4  5  6  7 )
+Group 19: 6 ( 1  2  3  4  5  6  7 )
+Group 20: 6 ( 1  2  3  4  5  6  7 )
+Group 21: 6 ( 1  2  3  4  5  6  7 )
+Group 22: 6 ( 1  2  3  4  5  6  7 )
+Group 23: 6 ( 1  2  3  4  5  6  7 )
+Group 24: 6 ( 1  2  3  4  5  6  7 )
+Group 25: 6 ( 1  2  3  4  5  6  7 )
+Group 26: 6 ( 1  2  3  4  5  6  7 )
+Group 27: 6 ( 1  2  3  4  5  6  7 )
+Group 28: 6 ( 1  2  3  4  5  6  7 )
+Group 29: 6 ( 1  2  3  4  5  6  7 )
+Group 30: 6 ( 1  2  3  4  5  6  7 )
+Group 31: 6 ( 1  2  3  4  5  6  7 )
+Group 32: 6 ( 1  2  3  4  5  6  7 )
+Group 33: 6 ( 1  2  3  4  5  6  7 )
+Group 34: 6 ( 1  2  3  4  5  6  7 )
+Group 35: 6 ( 1  2  3  4  5  6  7 )
+Group 36: 6 ( 1  2  3  4  5  6  7 )
+Group 37: 6 ( 1  2  3  4  5  6  7 )
+
+===============================================================================
+Initial design evaluation
+
+Initial OFV = -Inf
+
+Efficiency criterion [usually defined as OFV^(1/npar)]  = NaN
+
+Initial design expected parameter 
+relative standard error (%RSE)
+    Parameter    Values      RSE_0
+      bpop[1]     1.000   3.04e+08
+      bpop[2]     3.000   1.30e+00
+      bpop[3]   149.990   2.02e+09
+       D[1,1]     0.050   2.46e+01
+       D[2,2]     0.050   2.61e+01
+   SIGMA[1,1]     0.015   1.34e+01
+
+==============================================================================
+Criterion Specification
+
+OFV calculation for FIM: 4 
+  1=Determinant of FIM,
+  4=log determinant of FIM,
+  6=determinant of interesting part of FIM (Ds)
+
+Approximation method: 0
+  0=FO, 
+  1=FOCE, 
+  2=FOCEI, 
+  3=FOI
+
+Fisher Information Matrix type: 1
+  0=Full FIM,
+  1=Reduced FIM,
+  2=weighted models,
+  3=Loc models,
+  4=reduced FIM with derivative of SD of sigma as pfim,
+  5=FULL FIM parameterized with A,B,C matrices & derivative of variance,
+  6=Calculate one model switch at a time, good for large matrices,
+  7=Reduced FIM parameterized with A,B,C matrices & derivative of variance
+
+Design family: 1
+  D-family design (1) or 
+  ED-familty design (0) 
+  (with or without parameter uncertainty)
+
+==============================================================================
+Optimization of design parameters
+
+* Optimize Discrete variables
+
+*****************************
+            Line Search
+
+Individual/group 18 changed from x1 6 to x1 1
+OFV(MF) changed from -Inf to 34.6657 
+Individual/group 28 changed from x1 6 to x1 1
+OFV(MF) changed from 34.6657 to 35.329 
+Individual/group 21 changed from x1 6 to x1 1
+OFV(MF) changed from 35.329 to 35.7038 
+Individual/group 36 changed from x1 6 to x1 1
+OFV(MF) changed from 35.7038 to 35.96 
+Individual/group 35 changed from x1 6 to x1 1
+OFV(MF) changed from 35.96 to 36.1507 
+Individual/group 2 changed from x1 6 to x1 1
+OFV(MF) changed from 36.1507 to 36.2996 
+Individual/group 6 changed from x1 6 to x1 1
+OFV(MF) changed from 36.2996 to 36.4193 
+Individual/group 14 changed from x1 6 to x1 1
+OFV(MF) changed from 36.4193 to 36.5172 
+Individual/group 30 changed from x1 6 to x1 1
+OFV(MF) changed from 36.5172 to 36.5982 
+Individual/group 33 changed from x1 6 to x1 1
+OFV(MF) changed from 36.5982 to 36.6655 
+Individual/group 26 changed from x1 6 to x1 1
+OFV(MF) changed from 36.6655 to 36.7214 
+Individual/group 15 changed from x1 6 to x1 1
+OFV(MF) changed from 36.7214 to 36.7675 
+Individual/group 9 changed from x1 6 to x1 1
+OFV(MF) changed from 36.7675 to 36.8051 
+Individual/group 10 changed from x1 6 to x1 1
+OFV(MF) changed from 36.8051 to 36.8349 
+Individual/group 19 changed from x1 6 to x1 1
+OFV(MF) changed from 36.8349 to 36.8578 
+Individual/group 3 changed from x1 6 to x1 1
+OFV(MF) changed from 36.8578 to 36.8741 
+Individual/group 11 changed from x1 6 to x1 1
+OFV(MF) changed from 36.8741 to 36.8842 
+Individual/group 8 changed from x1 6 to x1 1
+OFV(MF) changed from 36.8842 to 36.8884 
+Individual/group 8 changed from x1 1 to x1 7
+OFV(MF) changed from 36.8884 to 36.8928 
+Individual/group 13 changed from x1 6 to x1 1
+OFV(MF) changed from 36.8928 to 36.8974 
+Individual/group 13 changed from x1 1 to x1 7
+OFV(MF) changed from 36.8974 to 36.9012 
+Individual/group 34 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9012 to 36.9062 
+Individual/group 34 changed from x1 1 to x1 7
+OFV(MF) changed from 36.9062 to 36.9096 
+Individual/group 4 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9096 to 36.9149 
+Individual/group 4 changed from x1 1 to x1 7
+OFV(MF) changed from 36.9149 to 36.9178 
+Individual/group 17 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9178 to 36.9235 
+Individual/group 17 changed from x1 1 to x1 7
+OFV(MF) changed from 36.9235 to 36.9259 
+Individual/group 23 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9259 to 36.932 
+Individual/group 23 changed from x1 1 to x1 7
+OFV(MF) changed from 36.932 to 36.9339 
+Individual/group 29 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9339 to 36.9404 
+Individual/group 29 changed from x1 1 to x1 7
+OFV(MF) changed from 36.9404 to 36.9419 
+Individual/group 12 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9419 to 36.9487 
+Individual/group 12 changed from x1 1 to x1 7
+OFV(MF) changed from 36.9487 to 36.9497 
+Individual/group 1 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9497 to 36.9569 
+Individual/group 1 changed from x1 1 to x1 7
+OFV(MF) changed from 36.9569 to 36.9574 
+Individual/group 22 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9574 to 36.965 
+Individual/group 22 changed from x1 1 to x1 7
+OFV(MF) changed from 36.965 to 36.9651 
+Individual/group 7 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9651 to 36.973 
+Individual/group 5 changed from x1 6 to x1 1
+OFV(MF) changed from 36.973 to 36.9755 
+Individual/group 5 changed from x1 1 to x1 7
+OFV(MF) changed from 36.9755 to 36.9809 
+Individual/group 16 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9809 to 36.9838 
+Individual/group 16 changed from x1 1 to x1 7
+OFV(MF) changed from 36.9838 to 36.9887 
+Individual/group 37 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9887 to 36.992 
+Individual/group 37 changed from x1 1 to x1 7
+OFV(MF) changed from 36.992 to 36.9964 
+Individual/group 24 changed from x1 6 to x1 1
+OFV(MF) changed from 36.9964 to 37.0001 
+Individual/group 24 changed from x1 1 to x1 7
+OFV(MF) changed from 37.0001 to 37.004 
+Individual/group 20 changed from x1 6 to x1 1
+OFV(MF) changed from 37.004 to 37.0081 
+Individual/group 20 changed from x1 1 to x1 7
+OFV(MF) changed from 37.0081 to 37.0115 
+Individual/group 32 changed from x1 6 to x1 1
+OFV(MF) changed from 37.0115 to 37.0159 
+Individual/group 32 changed from x1 1 to x1 7
+OFV(MF) changed from 37.0159 to 37.019 
+Individual/group 25 changed from x1 6 to x1 1
+OFV(MF) changed from 37.019 to 37.0237 
+Individual/group 25 changed from x1 1 to x1 7
+OFV(MF) changed from 37.0237 to 37.0263 
+Individual/group 31 changed from x1 6 to x1 1
+OFV(MF) changed from 37.0263 to 37.0314 
+Individual/group 31 changed from x1 1 to x1 7
+OFV(MF) changed from 37.0314 to 37.0336 
+Individual/group 27 changed from x1 6 to x1 1
+OFV(MF) changed from 37.0336 to 37.039 
+Individual/group 27 changed from x1 1 to x1 7
+OFV(MF) changed from 37.039 to 37.0407 
+
+Line search run time: 300.44 seconds
+***************************
+
+*****************************
+            Line Search
+
+
+Line search run time: 296.06 seconds
+***************************
+
+===============================================================================
+FINAL RESULTS
+
+Optimized Discrete Variables:
+Group 1: 7
+Group 2: 1
+Group 3: 1
+Group 4: 7
+Group 5: 7
+Group 6: 1
+Group 7: 1
+Group 8: 7
+Group 9: 1
+Group 10: 1
+Group 11: 1
+Group 12: 7
+Group 13: 7
+Group 14: 1
+Group 15: 1
+Group 16: 7
+Group 17: 7
+Group 18: 1
+Group 19: 1
+Group 20: 7
+Group 21: 1
+Group 22: 7
+Group 23: 7
+Group 24: 7
+Group 25: 7
+Group 26: 1
+Group 27: 7
+Group 28: 1
+Group 29: 7
+Group 30: 1
+Group 31: 7
+Group 32: 7
+Group 33: 1
+Group 34: 7
+Group 35: 1
+Group 36: 1
+Group 37: 7
+
+ FIM: 
+ 6.910049e+02 -2.556454e+01 -1.834044e+00  0.000000e+00  0.000000e+00  0.000000e+00
+-2.556454e+01  6.602096e+02  4.080204e-02  0.000000e+00  0.000000e+00  0.000000e+00
+-1.834044e+00  4.080204e-02  7.723065e-03  0.000000e+00  0.000000e+00  0.000000e+00
+ 0.000000e+00  0.000000e+00  0.000000e+00  6.453780e+03  1.135176e+01  1.482906e+03
+ 0.000000e+00  0.000000e+00  0.000000e+00  1.135176e+01  5.890239e+03  2.334933e+03
+ 0.000000e+00  0.000000e+00  0.000000e+00  1.482906e+03  2.334933e+03  2.482309e+05
+
+
+Inverse(FIM):
+ 3.920319e-03  9.429658e-05  9.304844e-01  0.000000e+00  0.000000e+00  0.000000e+00
+ 9.429658e-05  1.517433e-03  1.437638e-02  0.000000e+00  0.000000e+00  0.000000e+00
+ 9.304844e-01  1.437638e-02  3.503742e+02  0.000000e+00  0.000000e+00  0.000000e+00
+ 0.000000e+00  0.000000e+00  0.000000e+00  1.551610e-04  6.866334e-08 -9.275616e-07
+ 0.000000e+00  0.000000e+00  0.000000e+00  6.866334e-08  1.704078e-04 -1.603316e-06
+ 0.000000e+00  0.000000e+00  0.000000e+00 -9.275616e-07 -1.603316e-06  4.049129e-06
+
+OFV = 37.0407
+
+Efficiency criterion [usually defined as OFV^(1/npar)]  = 1.82577
+
+Efficiency [typically: (OFV_final/OFV_initial)^(1/npar)]: NaN
+
+Expected parameter 
+relative standard error (%RSE):
+    Parameter    Values      RSE_0     RSE
+      bpop[1]     1.000   3.04e+08    6.26
+      bpop[2]     3.000   1.30e+00    1.30
+      bpop[3]   149.990   2.02e+09   12.48
+       D[1,1]     0.050   2.46e+01   24.91
+       D[2,2]     0.050   2.61e+01   26.11
+   SIGMA[1,1]     0.015   1.34e+01   13.41
+
+Total running time: 596.52 seconds

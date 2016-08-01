@@ -4,22 +4,22 @@ $DATA sim_data.csv IGNORE=@
 $SUBROUTINES ADVAN1 TRANS2
 $PK
 
- TVCL  = THETA(1) + ETA(1)
- TVV   = THETA(2) + ETA(2)
- TM50  = THETA(3)
+ TVCL  = EXP(THETA(1))*EXP(ETA(1))
+ TVV   = EXP(THETA(2))*EXP(ETA(2))
+ TM50  = EXP(THETA(3))
  HL    = 0.75
+ HILL  = EXP(THETA(4))
 
- LCL    = TVCL+LOG(WT/70)*HL+LOG((AGE)/(AGE + TM50))
- LV     = TVV +LOG((WT/70))
- CL = EXP(LCL)
- V = EXP(LV)
- SC    = V
+ CL    = TVCL*(WT/70)**HL*((AGE**HILL)/(AGE**HILL + TM50**HILL))
+ V     = TVV *(WT/70)
+  SC    = V
 
 $THETA
- (0,  1,   100)        ; TVCL
- (0,  3,   100)       ; TVV
- (40, 100,  1000)         ; TM50
-      
+ (0,  1,   100)              ; TVCL
+ (0,  3,   100)              ; TVV
+ (0, 3.651,  1000)           ; TM50
+ (0,1.5261,10)                  ; Maturation HILL
+
 
 $OMEGA
  0.05
