@@ -195,6 +195,11 @@ if(option==1){
 #Calculate the 2.5th 92.5th percentiles of what is possible as described by Wang et al.
 #Compare the "CI" to 60% and 140% of geometrical mean 
 #(Theta?)
+  
+  if(corr == 1){
+    alpha <- alpha/(cohort_num-1)
+  }
+  
 if(option==2){
   
   ###This block calculates the total number of individuals in each age group
@@ -257,9 +262,7 @@ k=1 #to keep track of vector posistion
         varlcl=dfout%*%cov_lcl%*%t(dfout)
         SElcl=sqrt(varlcl)
   
-        if(corr == 1){
-          alpha <- alpha/length(age_space)
-        }
+
         
         
         #df <- nsub -num_params. is num_params 8? for this model 4 thetas, 2 omegas 2 sigmas
