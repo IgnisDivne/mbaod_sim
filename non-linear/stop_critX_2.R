@@ -34,7 +34,7 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
   thetas <- thetas[thetas!=0]
   sigmas <- sigmas[sigmas>0.0001]
   omegas <- omegas[omegas!=0]
-
+  
   
   df  <- nsub-6
   
@@ -62,46 +62,46 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
       covmat <- covmat[rownames(covmat) %in% theta_rows,colnames(covmat) %in% theta_rows]
       covmat <- as.matrix(covmat)
       print(covmat)
-      }else{
-        covmat <- inv_FIM[sort(c(CL_thetas,V_thetas)), sort(c(CL_thetas,V_thetas))]
-        covmat <- as.matrix(covmat)
-        print(covmat)
-      }
-
-  print(paste("You have selected option ",option,".",sep=""))
-  
-  
-
-
-if(option==3){    
-    #   thetas <- c(paste("THETA",sort(c(CL_thetas,V_thetas)),sep=""))
-    #   covmat <- covmat[rownames(covmat) %in% thetas,colnames(covmat) %in% thetas]
-    #   covmat <- as.matrix(covmat)
-    
-
-    
-print("Entering Option 3")
-
-    for (z in 1:length(covmat[1,])){
-      if(sum(covmat[z,])==0){
-        print(paste("Variance of Theta", z,"is zero, setting to large variance to fail stopping criteria and restart" ))
-      covmat[z,z]<-thetas[z]*100
-        }
-
+    }else{
+      covmat <- inv_FIM[sort(c(CL_thetas,V_thetas)), sort(c(CL_thetas,V_thetas))]
+      covmat <- as.matrix(covmat)
+      print(covmat)
     }
-    scale_mat  <- covmat*((df-2)/df)
-
-print(scale_mat)
-    #For all pediatric groups, group 1 is adults, hence i in 2:length(AGE_WT)
-
-    CLCI <- data.frame(low=1:1000,high=1:1000)    
-    VCI <- data.frame(low=1:1000,high=1:1000) 
-    for(i in 1:length(age_space)){
-      cat("\n")
-      print(paste("___ Pediatric Sub Population",i,": Children of age",age_groups$AGE[age_space[i]],"___"))
-      ####For all children ages in that group
-      sub_group <- subset(AGE_WT,AGE_WT$AGE==age_groups$AGE[age_space[i]])
-      sub_counter <- 0
+    
+    print(paste("You have selected option ",option,".",sep=""))
+    
+    
+    
+    
+    if(option==3){    
+      #   thetas <- c(paste("THETA",sort(c(CL_thetas,V_thetas)),sep=""))
+      #   covmat <- covmat[rownames(covmat) %in% thetas,colnames(covmat) %in% thetas]
+      #   covmat <- as.matrix(covmat)
+      
+      
+      
+      print("Entering Option 3")
+      
+      for (z in 1:length(covmat[1,])){
+        if(sum(covmat[z,])==0){
+          print(paste("Variance of Theta", z,"is zero, setting to large variance to fail stopping criteria and restart" ))
+          covmat[z,z]<-thetas[z]*100
+        }
+        
+      }
+      scale_mat  <- covmat*((df-2)/df)
+      
+      print(scale_mat)
+      #For all pediatric groups, group 1 is adults, hence i in 2:length(AGE_WT)
+      
+      CLCI <- data.frame(low=1:1000,high=1:1000)    
+      VCI <- data.frame(low=1:1000,high=1:1000) 
+      for(i in 1:length(age_space)){
+        cat("\n")
+        print(paste("___ Pediatric Sub Population",i,": Children of age",age_groups$AGE[age_space[i]],"___"))
+        ####For all children ages in that group
+        sub_group <- subset(AGE_WT,AGE_WT$AGE==age_groups$AGE[age_space[i]])
+        sub_counter <- 0
         
         if(ci_corr==1){ ##Bonferroni correction of CI
           alpha_corr <- alpha/(cohort_num-1)
@@ -123,97 +123,96 @@ print(scale_mat)
             
           }
           CL_CI <- c(median(CLCI[,1]), median(CLCI[,2]))
-                           
+          
           V_CI <- c(median(VCI[,1]), median(VCI[,2]))
           
-        
-        if(is.na(CLCI[1]) | is.na(CLCI[2]) | CLCI[1]==Inf| CLCI[2]==Inf){
-          print(paste("Clearance for Children of age",sub_group$AGE[j],"approaches Zero due to parameter estimates or SE of estimates"))
-          
-          print(paste("Thetas:",cohort_res$est_result$thetas))
-          print(paste("SE Thetas:",cohort_res$est_result$sethetas))
-        }else if(is.na(V_CI[1]) | is.na(V_CI[2]) | V_CI[1]==Inf| V_CI[2]==Inf){
-          print(paste("Volume of Distribution for Children of age",sub_group$AGE[j],"approaches Zero due to parameter estimates or SE of estimates"))
-          print(paste("Thetas:",cohort_res$est_result$thetas))
-          print(paste("SE Thetas:",cohort_res$est_result$sethetas))
-        }else{
-          CI_CL <- CL_CI
-          CI_V <- V_CI
-          
-          if(power==T){
-            p_CL <- get_power_crit(SElcl, df)
-            p_V <- get_power_crit(SELV, df)
+          if(is.na(CL_CI[1]) | is.na(CL_CI[2]) | CL_CI[1]==Inf| CL_CI[2]==Inf){
+            print(paste("Clearance for Children of age",sub_group$AGE[j],"approaches Zero due to parameter estimates or SE of estimates"))
             
-            if(p_CL>=0.8 & p_V > 0.8){
-              sub_counter <- sub_counter +1
-            }else{
-              print(" All Parameters Power of CI not >=80%: ")
-              print(paste("Power of Scaled logCL for age",sub_group$AGE[j],":",p_CL*10,"%"))
-              print(paste("Power of Scaled logV for age",sub_group$AGE[j],":",p_V*10,"%"))
-              
-            }
-            v_p_CL[k,] <-c(i,age,p_CL)
-            v_p_V[k,] <-c(i,age,p_V)
+            print(paste("Thetas:",cohort_res$est_result$thetas))
+            print(paste("SE Thetas:",cohort_res$est_result$sethetas))
+          }else if(is.na(V_CI[1]) | is.na(V_CI[2]) | V_CI[1]==Inf| V_CI[2]==Inf){
+            print(paste("Volume of Distribution for Children of age",sub_group$AGE[j],"approaches Zero due to parameter estimates or SE of estimates"))
+            print(paste("Thetas:",cohort_res$est_result$thetas))
+            print(paste("SE Thetas:",cohort_res$est_result$sethetas))
           }else{
-            if(CI_CL[1] > lower_limit & CI_CL[2] < higher_limit 
-               & CI_V[1] > lower_limit & CI_V[2] < higher_limit){
-              sub_counter <- sub_counter +1
+            CI_CL <- CL_CI
+            CI_V <- V_CI
+            
+            if(power==T){
+              p_CL <- get_power_crit(SElcl, df)
+              p_V <- get_power_crit(SELV, df)
+              
+              if(p_CL>=0.8 & p_V > 0.8){
+                sub_counter <- sub_counter +1
+              }else{
+                print(" All Parameters Power of CI not >=80%: ")
+                print(paste("Power of Scaled logCL for age",sub_group$AGE[j],":",p_CL*10,"%"))
+                print(paste("Power of Scaled logV for age",sub_group$AGE[j],":",p_V*10,"%"))
+                
+              }
+              v_p_CL[k,] <-c(i,age,p_CL)
+              v_p_V[k,] <-c(i,age,p_V)
             }else{
-              print(" All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: ")
-              print(paste("Scaled logCL for age",sub_group$AGE[j],":"))
-              print(CI_CL)
-              print(paste("Scaled logV for age",sub_group$AGE[j],":"))
-              print(CI_V)
+              if(CI_CL[1] > lower_limit & CI_CL[2] < higher_limit 
+                 & CI_V[1] > lower_limit & CI_V[2] < higher_limit){
+                sub_counter <- sub_counter +1
+              }else{
+                print(" All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: ")
+                print(paste("Scaled logCL for age",sub_group$AGE[j],":"))
+                print(CI_CL)
+                print(paste("Scaled logV for age",sub_group$AGE[j],":"))
+                print(CI_V)
+              }
             }
+            
+            CL_CIs[k,] <- c(i,age,CI_CL)
+            V_CIs[k,] <- c(i,age,CI_V)
+            
+            
+            k=k+1
           }
-          
-          CL_CIs[k,] <- c(i,age,CI_CL)
-          V_CIs[k,] <- c(i,age,CI_V)
-          
-          
-          k=k+1
-        }
-      } #end for all ages in this age group
-      
-      if(length(sub_group$AGE) == sub_counter){ #If parameter precision inall pediatric subgroups have been reached
+        } #end for all ages in this age group
         
-        print(paste("Stopping criteria reached for sub population",i)) 
-        group_pass[i] <- 1
+        if(length(sub_group$AGE) == sub_counter){ #If parameter precision inall pediatric subgroups have been reached
+          
+          print(paste("Stopping criteria reached for sub population",i)) 
+          group_pass[i] <- 1
+        }else{
+          print(paste("Stopping criteria NOT reached for population",i)) 
+        }
+        
+        
+      }###end for all age groups##############
+      if(sum(group_pass) == length(age_space)){ #If parameter precision inall pediatric subgroups have been reached
+        cat("\n")
+        print("Stopping criteria reached for all groups, stopping MBAOD") 
+        stop_MBAOD <- TRUE
       }else{
-        print(paste("Stopping criteria NOT reached for population",i)) 
+        cat("\n")
+        print("Stopping criteria NOT reached for all groups, starting next cohort")
+        stop_MBAOD <- FALSE
+        
       }
-      
-      
-    }###end for all age groups##############
-    if(sum(group_pass) == length(age_space)){ #If parameter precision inall pediatric subgroups have been reached
-      cat("\n")
-      print("Stopping criteria reached for all groups, stopping MBAOD") 
-      stop_MBAOD <- TRUE
-    }else{
-      cat("\n")
-      print("Stopping criteria NOT reached for all groups, starting next cohort")
-      stop_MBAOD <- FALSE
+      xspace <- group_pass*age_space
+      #Unlocks the oldest group for which the stopping critera has not been fufulled
+      #E.g. for the MBAOD to allow adding children of group 4, the older children in group 5 must first have a good estimate
+      #Added this after the design got "stuck"
+      if(allow_next == T & sum(xspace)>0) xspace[min(xspace[xspace>1])-1] <- min(xspace[xspace>1])-1
+      if(allow_next == T & sum(xspace)==0) xspace <- c(6,7)
+      new_xspace <- unique(c(xspace[xspace != 0],6,7))
+      return(list(stop_MBAOD,new_xspace,CL_CIs,V_CIs))
       
     }
-    xspace <- group_pass*age_space
-    #Unlocks the oldest group for which the stopping critera has not been fufulled
-    #E.g. for the MBAOD to allow adding children of group 4, the older children in group 5 must first have a good estimate
-    #Added this after the design got "stuck"
-    if(allow_next == T & sum(xspace)>0) xspace[min(xspace[xspace>1])-1] <- min(xspace[xspace>1])-1
-    if(allow_next == T & sum(xspace)==0) xspace <- c(6,7)
-    new_xspace <- unique(c(xspace[xspace != 0],6,7))
-    return(list(stop_MBAOD,new_xspace,CL_CIs,V_CIs))
     
+    print("--------:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-------")
+  }else{
+    stop_mbaod <- FALSE
+    new_xspace <- unlist(cohort_res$opt_result$opt_output$poped.db$design$discrete_x[cohort_num])
+    
+    return(list(stop_mbaod,new_xspace))
   }
-
-print("--------:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-------")
-}else{
-  stop_mbaod <- FALSE
-  new_xspace <- unlist(cohort_res$opt_result$opt_output$poped.db$design$discrete_x[cohort_num])
   
-  return(list(stop_mbaod,new_xspace))
-}
-
 }
 
 
@@ -228,21 +227,21 @@ get_power_crit <- function(sdlogX,nsub){
     2*((n-1)/2/sigma**2)**((n-1)/2)/gamma(0.5*(n-1))*s**(n-2)*exp(-(n-1)*s**2/2/sigma**2)}
   result<-rep(0,nsub)
   sd<-sdlogX #standard deviation of logX from adult data
-
-    n<-nsub
-    tv<-qt(0.975, n)
-    sup<-log(1.4)*sqrt(n)/tv
-    g<-function(x){f(x,n,sd)}
-    poweri<-integrate(g, 0, sup, subdivisions=100)
-    power<-poweri[[1]]
-
+  
+  n<-nsub
+  tv<-qt(0.975, n)
+  sup<-log(1.4)*sqrt(n)/tv
+  g<-function(x){f(x,n,sd)}
+  poweri<-integrate(g, 0, sup, subdivisions=100)
+  power<-poweri[[1]]
+  
   return(power)
 }
 
 loglin_size_mat_scaling <- function(params,age,wt){
   #params <- subset(params, params[,3]>0)
   
-
+  
   #etacl<-params[,4]
   #etav<-params[,5]
   #TM50[TM50<0] <- 0
@@ -272,12 +271,12 @@ size_mat_scaling <- function(params,age,wt){
   TM50<- exp(params[,3])
   HILL<-exp(params[,4])
   V <- exp(params[,2])
-
+  
   
   
   CL <-  base * (wt/70)^0.75 * (age^HILL)/(age^HILL+TM50^HILL)
   V  <-  V *(wt/70)
-
+  
   df <- data.frame(CL,V)
   return(df)
 }
@@ -289,7 +288,7 @@ emax <- function(params,age,wt){
   EMAX<- params[,3]
   EC50<- params[,4]
   HILL<-params[,5]
-
+  
   
   CL=base+(EMAX*wt**HILL)/(EC50**HILL+wt**HILL)
   V=V*(wt/70)
