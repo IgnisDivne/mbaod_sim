@@ -6,17 +6,30 @@
 
 
 #set path to the directory where this file is located
-setwd("C:/Users/erist836/Documents/GitHub/mbaod_sim/non-linear")
+if(Sys.getenv("LOGNAME")=="ahooker"){
+  setwd("~/Documents/_PROJECTS/AOD/repos/mbaod_sim/non-linear")
+} else {
+  setwd("C:/Users/erist836/Documents/GitHub/mbaod_sim/non-linear")  
+}
+
 
 # remove things from the global environment
 rm(list=ls())
 
-library(PopED)
+if(Sys.getenv("LOGNAME")=="ahooker"){
+  devtools::load_all("~/Documents/_PROJECTS/PopED/repos/PopED")
+} else {
+  library(PopED)
+}
 library(mvtnorm)
 library(xpose4)
 
 # load the MBAOD package change to your relevant load call
-devtools::load_all("C:/Users/erist836/Documents/GitHub/MBAOD/R")
+if(Sys.getenv("LOGNAME")=="ahooker"){
+  devtools::load_all("~/Documents/_PROJECTS/AOD/repos/MBAOD")
+} else {
+  devtools::load_all("C:/Users/erist836/Documents/GitHub/MBAOD/R")
+}
 
 # load the PopED model file
 source("PopED_files/poped.mod.PK.1.comp.maturation_real.R")
@@ -50,6 +63,8 @@ step_1=list(
 ##If only adults and subadults are allowed, the information about TM50 is too sparse.
 x.space <- cell(5,1)
 x.space[,] <- list(c(2,3,4,5,6,7))
+#x.space[,] <- list(c(6,7))
+
 ###
 
 tm50 <- 3.651
@@ -61,6 +76,7 @@ step_2 = list(
     groupsize = 2,
     m=5,
     x = t(rbind(age_group=c(6,5,4,3,2))),
+    #x = t(rbind(age_group=c(6,6,6,6,6))),
     xt = c(0.1, 2, 6, 12, 24)
   ),
   optimize=list(target="poped_R",
@@ -118,9 +134,11 @@ step_3$optimize$design_space$x_space<- x.space
 
 results_mbaod_small <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
                                       ncohorts=30, # number of steps or cohorts in one AOD
+                                      #ncohorts=3, # number of steps or cohorts in one AOD
                                       rep=1, #number of times to repeat the MBAOD simulation 
                                       name="propofol_run", lower_limit=0.6,higher_limit=1.4,
                                       description="25 steps, 1st step one group, steps 2-10 have 1 added group per step",
-                                      seednr=123, stop_crit_fun =stop_critX_2,run_commands="-retries=5", ci_corr=0,option=3)
+                                      seednr=123, stop_crit_fun =stop_critX_2,run_commands="-retries=5 -picky", 
+                                      ci_corr=0,option=3)
 
 
