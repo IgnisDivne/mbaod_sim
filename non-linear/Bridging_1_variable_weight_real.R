@@ -94,7 +94,8 @@ step_2 = list(
                   manipulation=NULL # manipulation of initial parameters
                 ),
                 settings.db=list(
-                  notfixed_sigma=c(1,0)
+                  notfixed_sigma=c(1,0),
+                  notfixed_bpop = c(1,1,1,1)
                 ),
                 settings.opt=list(
                   opt_xt=F,
@@ -122,18 +123,18 @@ step_2 = list(
   estimate=list(target="NONMEM", model="NONMEM_files/est_full_propofol.mod") #Change to est_full_gfr.mod for misspec
 )
 
-x.space <- cell(2,1)
+x.space <- cell(1,1)
 x.space[,] <- list(c(6,7))
 step_3 <- step_2
 step_3$optimize$parameters <- NULL
-step_3$design$groupsize <- 1
-step_3$design$x <- t(rbind(age_group=c(6,6)))
-step_3$design$m <- 2
+step_3$design$groupsize <- 2
+step_3$design$x <- c(age_group=c(6))
+step_3$design$m <- 1
 step_3$optimize$design_space$x_space<- x.space
 
 
 results_mbaod_small <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
-                                      ncohorts=30, # number of steps or cohorts in one AOD
+                                      ncohorts=50, # number of steps or cohorts in one AOD
                                       #ncohorts=3, # number of steps or cohorts in one AOD
                                       rep=1, #number of times to repeat the MBAOD simulation 
                                       name="propofol_run", lower_limit=0.6,higher_limit=1.4,

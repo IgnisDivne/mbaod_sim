@@ -1,5 +1,5 @@
 ##Stopping function for MBAOD bridging study with 2 scaling parameters (Fixed WT hill on CL)
-stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1,3,4),V_thetas=2,ci_corr=1,
+stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1,3,4),V_thetas=2,ci_corr=0,
                          alpha=0.05,sim_params=size_mat_scaling, age_space = c(1,2,3,4,5,6),allow_next=T,
                          power=F,lower_limit=0.6,higher_limit=1.4, use_FIM=F){
   library(mvtnorm)
@@ -31,7 +31,7 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
   omegas <- unlist(cohort_res$est_result$omega)
   sigmas <- unlist(cohort_res$est_result$sigma)
   
-  thetas <- thetas[thetas!=0]
+  thetas <- thetas
   sigmas <- sigmas[sigmas>0.0001]
   omegas <- omegas[omegas!=0]
   
@@ -82,7 +82,7 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
       
       print("Entering Option 3")
       
-      for (z in 1:length(covmat[1,])){
+      for (z in 2:length(covmat[1,])){
         if(sum(covmat[z,])==0){
           print(paste("Variance of Theta", z,"is zero, setting to large variance to fail stopping criteria and restart" ))
           covmat[z,z]<-thetas[z]*100
@@ -122,9 +122,9 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
             VCI[samp,] <- VCI[samp,]/gm_mean(params_df$V)
             
           }
-          CL_CI <- c(median(CLCI[,1]), median(CLCI[,2]))
+          CL_CI <- c(median(CLCI[,1],na.rm = T), median(CLCI[,2],na.rm = T))
           
-          V_CI <- c(median(VCI[,1]), median(VCI[,2]))
+          V_CI <- c(median(VCI[,1],na.rm = T), median(VCI[,2],na.rm = T))
           
           if(is.na(CL_CI[1]) | is.na(CL_CI[2]) | CL_CI[1]==Inf| CL_CI[2]==Inf){
             print(paste("Clearance for Children of age",sub_group$AGE[j],"approaches Zero due to parameter estimates or SE of estimates"))
@@ -208,8 +208,8 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
     print("--------:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-------")
   }else{
     stop_mbaod <- FALSE
-    new_xspace <- unlist(cohort_res$opt_result$opt_output$poped.db$design$discrete_x[cohort_num])
-    
+    new_xspace <- unlist(cohort_res$opt_result$opt_output$poped.db$design_space$discrete_x[length(cohort_res$opt_result$opt_output$poped.db$design_space$discrete_x)])
+    new_xspace <- unique(c(new_xspace,6,7))
     return(list(stop_mbaod,new_xspace))
   }
   
@@ -295,3 +295,26 @@ emax <- function(params,age,wt){
   
   return(data.frame(LCL = log(CL),LV=log(V)))
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
