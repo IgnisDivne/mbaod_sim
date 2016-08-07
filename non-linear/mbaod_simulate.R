@@ -271,13 +271,10 @@ mbaod_simulate <- function(cohorts,
               est_result <- run_results(cohort_dir)
               
               
-              if(is.null(est_result)){
+              if(!file.exists(file.path(cohort_dir,"est.lst"))){
                 print("NONMEM estimation failed, restarting")
-                est_successful <- est_successful +1
-                
-                
               }else{
-                
+                est_successful <- est_successful +1
                 ## get params and RSE from xpose
                 pars <- getPars(file.path(cohort_dir,"est.lst"))
                 
