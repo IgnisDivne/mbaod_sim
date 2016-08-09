@@ -62,12 +62,12 @@ step_1=list(
 ##Initial Design space for the age groups. subadults 12-18 y.o. and adults.
 ##If only adults and subadults are allowed, the information about TM50 is too sparse.
 x.space <- cell(5,1)
-x.space[,] <- list(c(2,3,4,5,6,7))
+x.space[,] <- list(c(2,3,4,5,6))
 #x.space[,] <- list(c(6,7))
 
 ###
 
-tm50 <- 3.651
+
 
 
 #First cohort with children
@@ -107,7 +107,7 @@ step_2 = list(
                   bUseLineSearch = 1,
                   bUseExchangeAlgorithm=0,
                   EACriteria = 1,
-                  compute_inv=T
+                  compute_inv=F
                 )
   ),
   simulate=list(target="NONMEM", model="NONMEM_files/sim_propofol.mod",
@@ -124,22 +124,22 @@ step_2 = list(
 )
 
 x.space <- cell(1,1)
-x.space[,] <- list(c(6,7))
+x.space[,] <- list(c(6))
 step_3 <- step_2
 step_3$optimize$parameters <- NULL
-step_3$design$groupsize <- 2
-step_3$design$x <- c(age_group=c(6))
-step_3$design$m <- 1
+step_3$design$groupsize <- 1
+step_3$design$x <- t(rbind(age_group=c(6,6)))
+step_3$design$m <- 2
 step_3$optimize$design_space$x_space<- x.space
 
 
 results_mbaod_small <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
                                       ncohorts=50, # number of steps or cohorts in one AOD
                                       #ncohorts=3, # number of steps or cohorts in one AOD
-                                      rep=1, #number of times to repeat the MBAOD simulation 
+                                      rep=100, #number of times to repeat the MBAOD simulation 
                                       name="propofol_run", lower_limit=0.6,higher_limit=1.4,
                                       description="25 steps, 1st step one group, steps 2-10 have 1 added group per step",
-                                      seednr=123, stop_crit_fun =stop_critX_2,run_commands="-retries=5 -picky", 
+                                      seednr=1234, stop_crit_fun =stop_critX_2,run_commands="-retries=5 -picky", 
                                       ci_corr=0,option=3)
 
 

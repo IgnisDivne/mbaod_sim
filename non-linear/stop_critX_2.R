@@ -53,7 +53,6 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
     
     
   }
-  
   if(!is.null(cohort_res$est_result$cov_mat)  & cohort_num>1){  
     
     if(use_FIM==F){
@@ -66,7 +65,23 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
       covmat <- inv_FIM[sort(c(CL_thetas,V_thetas)), sort(c(CL_thetas,V_thetas))]
       covmat <- as.matrix(covmat)
       print(covmat)
+    }  
+    
+    
+  for (z in 2:length(covmat[1,])){
+    if(sum(covmat[z,])==0){
+      print(paste("Variance of Theta", z,"in the COV is exactly zero, Failing Stopping criterion due to estimation issues and adding another cohort." ))
+      cohort_res$est_result$cov_mat <- NULL
     }
+    
+  }
+  
+}
+  
+  
+  if(!is.null(cohort_res$est_result$cov_mat)  & cohort_num>1){  
+    
+
     
     print(paste("You have selected option ",option,".",sep=""))
     
@@ -82,13 +97,7 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
       
       print("Entering Option 3")
       
-      for (z in 2:length(covmat[1,])){
-        if(sum(covmat[z,])==0){
-          print(paste("Variance of Theta", z,"is zero, setting to large variance to fail stopping criteria and restart" ))
-          covmat[z,z]<-thetas[z]*100
-        }
-        
-      }
+
       scale_mat  <- covmat*((df-2)/df)
       
       print(scale_mat)
@@ -199,8 +208,8 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
       #E.g. for the MBAOD to allow adding children of group 4, the older children in group 5 must first have a good estimate
       #Added this after the design got "stuck"
       if(allow_next == T & sum(xspace)>0) xspace[min(xspace[xspace>1])-1] <- min(xspace[xspace>1])-1
-      if(allow_next == T & sum(xspace)==0) xspace <- c(6,7)
-      new_xspace <- unique(c(xspace[xspace != 0],6,7))
+      if(allow_next == T & sum(xspace)==0) xspace <- c(6)
+      new_xspace <- unique(c(xspace[xspace != 0],6))
       return(list(stop_MBAOD,new_xspace,CL_CIs,V_CIs))
       
     }
@@ -209,7 +218,7 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
   }else{
     stop_mbaod <- FALSE
     new_xspace <- unlist(cohort_res$opt_result$opt_output$poped.db$design_space$discrete_x[length(cohort_res$opt_result$opt_output$poped.db$design_space$discrete_x)])
-    new_xspace <- unique(c(new_xspace,6,7))
+    new_xspace <- unique(c(new_xspace,6))
     return(list(stop_mbaod,new_xspace))
   }
   
