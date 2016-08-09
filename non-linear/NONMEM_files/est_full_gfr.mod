@@ -17,8 +17,8 @@ $PK
 $THETA
  (0,  1,   100)              ; TVCL
  (0,  3,   100)              ; TVV
- (0, 3.862,  5)           ; TM50
- (0,1.224,2.5)                  ; Maturation HILL
+ (0, 3.8,  5)           ; TM50
+ (0,1.2,2.5)                  ; Maturation HILL
 
 $OMEGA
  0.05
