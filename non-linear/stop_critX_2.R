@@ -1,5 +1,5 @@
 ##Stopping function for MBAOD bridging study with 2 scaling parameters (Fixed WT hill on CL)
-stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1,3,4),V_thetas=2,ci_corr=1,
+stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1,3,4),V_thetas=2,ci_corr=0,
                          alpha=0.05,sim_params=size_mat_scaling, age_space = c(1,2,3,4,5,6),allow_next=T,
                          power=F,lower_limit=0.6,higher_limit=1.4, use_FIM=F){
   library(mvtnorm)
@@ -31,7 +31,7 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
   omegas <- unlist(cohort_res$est_result$omega)
   sigmas <- unlist(cohort_res$est_result$sigma)
   
-  thetas <- thetas[thetas!=0]
+  thetas <- thetas
   sigmas <- sigmas[sigmas>0.0001]
   omegas <- omegas[omegas!=0]
   
@@ -53,7 +53,6 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
     
     
   }
-  
   if(!is.null(cohort_res$est_result$cov_mat)  & cohort_num>1){  
     
     if(use_FIM==F){
@@ -66,7 +65,23 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
       covmat <- inv_FIM[sort(c(CL_thetas,V_thetas)), sort(c(CL_thetas,V_thetas))]
       covmat <- as.matrix(covmat)
       print(covmat)
+    }  
+    
+    
+  for (z in 2:length(covmat[1,])){
+    if(sum(covmat[z,])==0){
+      print(paste("Variance of Theta", z,"in the COV is exactly zero, Failing Stopping criterion due to estimation issues and adding another cohort." ))
+      cohort_res$est_result$cov_mat <- NULL
     }
+    
+  }
+  
+}
+  
+  
+  if(!is.null(cohort_res$est_result$cov_mat)  & cohort_num>1){  
+    
+
     
     print(paste("You have selected option ",option,".",sep=""))
     
@@ -82,13 +97,7 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
       
       print("Entering Option 3")
       
-      for (z in 1:length(covmat[1,])){
-        if(sum(covmat[z,])==0){
-          print(paste("Variance of Theta", z,"is zero, setting to large variance to fail stopping criteria and restart" ))
-          covmat[z,z]<-thetas[z]*100
-        }
-        
-      }
+
       scale_mat  <- covmat*((df-2)/df)
       
       print(scale_mat)
@@ -122,9 +131,9 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
             VCI[samp,] <- VCI[samp,]/gm_mean(params_df$V)
             
           }
-          CL_CI <- c(median(CLCI[,1]), median(CLCI[,2]))
+          CL_CI <- c(median(CLCI[,1],na.rm = T), median(CLCI[,2],na.rm = T))
           
-          V_CI <- c(median(VCI[,1]), median(VCI[,2]))
+          V_CI <- c(median(VCI[,1],na.rm = T), median(VCI[,2],na.rm = T))
           
           if(is.na(CL_CI[1]) | is.na(CL_CI[2]) | CL_CI[1]==Inf| CL_CI[2]==Inf){
             print(paste("Clearance for Children of age",sub_group$AGE[j],"approaches Zero due to parameter estimates or SE of estimates"))
@@ -199,8 +208,8 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
       #E.g. for the MBAOD to allow adding children of group 4, the older children in group 5 must first have a good estimate
       #Added this after the design got "stuck"
       if(allow_next == T & sum(xspace)>0) xspace[min(xspace[xspace>1])-1] <- min(xspace[xspace>1])-1
-      if(allow_next == T & sum(xspace)==0) xspace <- c(6,7)
-      new_xspace <- unique(c(xspace[xspace != 0],6,7))
+      if(allow_next == T & sum(xspace)==0) xspace <- c(6)
+      new_xspace <- unique(c(xspace[xspace != 0],6))
       return(list(stop_MBAOD,new_xspace,CL_CIs,V_CIs))
       
     }
@@ -208,8 +217,8 @@ stop_critX_2 <- function(cohort_num,cohort_res,option=3,nsim=1000, CL_thetas=c(1
     print("--------:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-------")
   }else{
     stop_mbaod <- FALSE
-    new_xspace <- unlist(cohort_res$opt_result$opt_output$poped.db$design$discrete_x[cohort_num])
-    
+    new_xspace <- unlist(cohort_res$opt_result$opt_output$poped.db$design_space$discrete_x[length(cohort_res$opt_result$opt_output$poped.db$design_space$discrete_x)])
+    new_xspace <- unique(c(new_xspace,6))
     return(list(stop_mbaod,new_xspace))
   }
   
@@ -295,3 +304,26 @@ emax <- function(params,age,wt){
   
   return(data.frame(LCL = log(CL),LV=log(V)))
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

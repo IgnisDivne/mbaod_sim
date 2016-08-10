@@ -15,10 +15,10 @@ $PK
   SC    = V
 
 $THETA
- (0,  1,   100)              ; TVCL
- (0,  3,   100)              ; TVV
- (0, 3.651,  5)           ; TM50
- (0,1.5261,2.5)                  ; Maturation HILL
+ (0,  1,   10)                   ; TVCL
+ (0,  3,   10)                   ; TVV
+ (0, 3.6,  5)                  ; TM50
+ (0,1.5,3.5)                  ; Maturation HILL
 
 $OMEGA
  0.05

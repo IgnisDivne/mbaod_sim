@@ -161,8 +161,8 @@ mbaod_simulate <- function(cohorts,
       #----- simulate  the  cohort ---------
       
       
-      simest_successful <- 0
-      while (simest_successful == 0) {
+    
+     
         if(!is.null(cohort$simulate)){
           
           cat('\n')
@@ -185,7 +185,7 @@ mbaod_simulate <- function(cohorts,
                                          dosing=cohort$simulate$data$dosing,
                                          filename=file.path(cohort_dir,sim_data_output_fn),
                                          manipulation=cohort$simulate$data$manipulation)
-            simest_successful <- 1
+           
             
             
             
@@ -213,9 +213,21 @@ mbaod_simulate <- function(cohorts,
             ## change $DATA to right file name (sim.data.csv)
             ## change $INPUT so that it matches sim_data, match with grep, if no match then throw an error, add drop to columns not needed
             ## add table output so that you get same as $INPUT
+            
+            sim_successful <- 0
+            
             print(cohort_dir)
+            while(sim_successful<10){
             execute("sim.mod",run_dir=cohort_dir,...)
-            simest_successful <- 1
+            
+            if(!file.exists(file.path(cohort_dir,"sim.lst"))){
+              print("NONMEM Simulation Failed! Retrying")
+              sim_successful <- sim_successful+1
+            }else{
+              sim_successful <- 10
+            }
+            
+            }
           }
           
           
@@ -223,8 +235,7 @@ mbaod_simulate <- function(cohorts,
           cohort_res$dosing <- cohort$simulate$dosing
           
           
-        }else{
-          simest_successful <- 1
+
         }
         
         if(!is.null(cohort$estimate)){
@@ -252,40 +263,44 @@ mbaod_simulate <- function(cohorts,
             #test for successful run, retry if unsuccessful
             ## output result to screen
             ## get all estimation info from xpose
-            execute("est.mod",run_dir=cohort_dir,additional_commands=run_commands,...)
-            est_result <- run_results(cohort_dir)
             
-            
-            if(is.null(est_result)){
-              print("NONMEM simulation and estimation failed")
-              simest_successful <- 1
-            }else{
-              
-              ## get params and RSE from xpose
-              pars <- getPars(file.path(cohort_dir,"est.lst"))
-              
-              ## get cov matrix
-              
-              cov_mat <- read_covmat(cohort_dir)
+            est_successful <- 0
+
+            while(est_successful<10){
+              execute("est.mod",run_dir=cohort_dir,additional_commands=run_commands,...)
+              est_result <- run_results(cohort_dir)
               
               
-              cohort_res$est_result <- est_result
-              cohort_res$est_result$cov_mat <- cov_mat
-              
-              if(is.null(cov_mat)){
-                print("Covariance step failed.")
-                simest_successful <- 1
+              if(!file.exists(file.path(cohort_dir,"est.lst"))){
+                print("NONMEM estimation failed, restarting")
               }else{
-                simest_successful <- 1
+                est_successful <- est_successful +1
+                ## get params and RSE from xpose
+                pars <- getPars(file.path(cohort_dir,"est.lst"))
+                
+                ## get cov matrix
+                
+                cov_mat <- read_covmat(cohort_dir)
+                
+                
+                cohort_res$est_result <- est_result
+                cohort_res$est_result$cov_mat <- cov_mat
+                
+                if(is.null(cov_mat)){
+                  print("Covariance step failed.")
+                }
+                  est_successful <- 10
+                
               }
             }
+            
+            
+            
           }##end nonmem est
-        }else{#End if estimate
-          simest_successful <- 1
         }
         
         
-      }
+      
       
       ####STOPPING CRITERIA####
       if(!is.null(stop_crit_fun)){
@@ -296,6 +311,11 @@ mbaod_simulate <- function(cohorts,
           break
         }else{
           stop_res[[paste("cohort_",i,sep="")]] <- stop_res_tmp
+          if(i<length(cohorts) & i>1){    #if there is more cohorts, change xspace for the next cohort to allow any new agegroups
+            cohorts[[i+1]]$optimize$design_space$x_space[,] <- stop_res_tmp[2]
+            print("Updating x_space for next cohort to:")
+            print(unlist(stop_res_tmp[2]))
+          }
         }
         
       }else{
@@ -401,4 +421,4 @@ run_results <- function(cohort_dir){
   } 
   )
   return(out)
-}
+} 
