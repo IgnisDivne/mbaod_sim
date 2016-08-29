@@ -11,7 +11,9 @@ mbaod_simulate <- function(cohorts,
                            ED_only_FIM = F,
                            update_params =T,
                            stop_crit_fun = NULL,
-                           run_commands = "",...){
+                           run_commands = "",
+                           optim_fun ="poped_optim",
+                           ...){
   
   # timing
   tic(name=".mbaod_start_time")
@@ -136,10 +138,10 @@ mbaod_simulate <- function(cohorts,
           #print(tot_space$x_space)
           
           #### optimize cohort ------------
-          opt_output  <- do.call(poped_optimize,
+          opt_output  <- do.call(optim_fun,
                                  c(poped.db=list(design.db),
                                    cohort$optimize$settings.opt,
-                                   out_file=file.path(cohort_dir,"PopED_ouput_summary_RS_opt_gen.txt")))
+                                   out_file=file.path(cohort_dir,"PopED_ouput.txt")))
           
           # update total design with optimized design from output          
           optimized_design <- update_design(tot_design,opt_output)
