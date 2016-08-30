@@ -96,7 +96,14 @@ plot_model_prediction(propofol_t.db)
 # plot_model_prediction(propofol_T_OD_res$poped.db)
 # 
 
+# slow optimization
 propofol_T_OD_res <- poped_optim(propofol_t.db,opt_xt=0,opt_a=T,parallel = T)
 
-get_rse(propofol_T_OD_res$FIM,propofol_T_OD_res$poped.db)
-plot_model_prediction(propofol_T_OD_res$poped.db)
+
+# faster optimization
+propofol_T_OD_res_fast <- poped_optim(propofol_t.db,opt_xt=0,opt_a=T,parallel = T,
+                                      method=c("LS"), loop_methods=T)
+
+
+get_rse(propofol_T_OD_res_fast$FIM,propofol_T_OD_res_fast$poped.db)
+plot_model_prediction(propofol_T_OD_res_fast$poped.db)
