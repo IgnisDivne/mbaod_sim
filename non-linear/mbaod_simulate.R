@@ -17,7 +17,7 @@ mbaod_simulate <- function(cohorts,
   
   # timing
   tic(name=".mbaod_start_time")
-  if(!is.null(seednr)) set.seed(seednr)
+  if(!is.null(seednr)) set.seed(seednr, kind = "default", normal.kind = "default")
   pars_out <- NULL
   # check if directory exists
   valid_name  <- FALSE
@@ -109,7 +109,6 @@ mbaod_simulate <- function(cohorts,
           #           cohort_dir="."
           
           #### combine initial design for current and  final design for all previous cohorts ----------
-          
           design_and_space <- combine_design_and_space(cohort, aod_res)
           
           tot_design <- design_and_space$design
@@ -314,8 +313,8 @@ mbaod_simulate <- function(cohorts,
         }else{
           stop_res[[paste("cohort_",i,sep="")]] <- stop_res_tmp
           if(i<length(cohorts) & i>1){    #if there is more cohorts, change xspace for the next cohort to allow any new agegroups
-            cohorts[[i+1]]$optimize$design_space$x_space[,] <- stop_res_tmp[2]
-            print("Updating x_space for next cohort to:")
+            cohorts[[i+1]]$optimize$design_space$a_space[,] <- stop_res_tmp[2]
+            print("Updating a_space for next cohort to:")
             print(unlist(stop_res_tmp[2]))
           }
         }
