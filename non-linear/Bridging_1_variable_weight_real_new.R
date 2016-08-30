@@ -31,7 +31,7 @@ if(Sys.getenv("LOGNAME")=="ahooker"){
   devtools::load_all("C:/Users/erist836/Documents/GitHub/MBAOD/R")
 }
 
-# load the PopED model file
+# load the PopED model file 
 source("PopED_files/poped.mod.PK.1.comp.maturation_real_new.R")
 # load the weight estimator file
 source("get_weight.R")
@@ -61,8 +61,8 @@ step_1=list(
 
 ##Initial Design space for the age groups. subadults 12-18 y.o. and adults.
 ##If only adults and subadults are allowed, the information about TM50 is too sparse.
-a.space <- cell(5,1)
-a.space[,] <- list(c(2,3,4,5,6))
+a.space <- cell(6,1)
+a.space[,] <- list(c(1,2,3,4,5,6))
 #x.space[,] <- list(c(6,7))
 
 ###
@@ -74,8 +74,8 @@ a.space[,] <- list(c(2,3,4,5,6))
 step_2 = list(
   design = list(
     groupsize = 2,
-    m=5,
-    a = t(rbind(age_group=c(6,5,4,3,2))),
+    m=6,
+    a = cbind(age_group=c(6,5,4,3,2,1)),
     #a = t(rbind(age_group=c(6,6,6,6,6))),
     xt = c(0.1, 2, 6, 12, 24)
   ),
@@ -87,7 +87,7 @@ step_2 = list(
                 ),
                 design_space=list(#minxt=0,
                                   #maxxt=24,
-                                  a_space = list(c(2,3,4,5,6))
+                                  a_space = a.space
                 ),
                 parameters=list(
                   bpop=c(TM50=3.651, HILL=1.5261), #log of parameters. change to tm50= 3.862 and hill=1.224 for misspec
@@ -99,7 +99,10 @@ step_2 = list(
                 ),
                 settings.opt=list(
                   opt_xt=F,
-                  opt_a=T
+                  opt_a=T,
+                  parallel=T,
+                  method=c("LS"), 
+                  loop_methods=T
                   # opt_x=T,
                   # bUseRandomSearch= 0,
                   # bUseStochasticGradient = 0,
@@ -123,23 +126,37 @@ step_2 = list(
   estimate=list(target="NONMEM", model="NONMEM_files/est_full_propofol.mod") #Change to est_full_gfr.mod for misspec
 )
 
-x.space <- cell(1,1)
-x.space[,] <- list(c(6))
+a.space <- cell(1,1)
+#a.space[,] <- list(c(6))
+a.space[,] <- list(c(1:6))
 step_3 <- step_2
 step_3$optimize$parameters <- NULL
 step_3$design$groupsize <- 1
-step_3$design$x <- t(rbind(age_group=c(6,6)))
+step_3$design$a <- t(rbind(age_group=c(6,6)))
 step_3$design$m <- 2
-step_3$optimize$design_space$x_space<- x.space
-
+step_3$optimize$design_space$a_space<- a.space
 
 results_mbaod_small <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
                                       #ncohorts=50, # number of steps or cohorts in one AOD
-                                      ncohorts=2, # number of steps or cohorts in one AOD
+                                      ncohorts=50, # allowed number of steps or cohorts in one AOD
                                       rep=1, #number of times to repeat the MBAOD simulation 
                                       name="propofol_run", lower_limit=0.6,higher_limit=1.4,
-                                      description="25 steps, 1st step one group, steps 2-10 have 1 added group per step",
-                                      seednr=1234, stop_crit_fun =stop_critX_2,run_commands="-retries=5 -picky", 
+                                      description="50 possible steps",
+                                      seednr=1234, stop_crit_fun = stop_critX_2,
+                                      run_commands="-retries=5", 
                                       ci_corr=0,option=3)
 
-
+## to check reproducibility
+# results_mbaod_small_2 <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
+#                                       #ncohorts=50, # number of steps or cohorts in one AOD
+#                                       ncohorts=2, # allowed number of steps or cohorts in one AOD
+#                                       rep=1, #number of times to repeat the MBAOD simulation 
+#                                       name="propofol_run", lower_limit=0.6,higher_limit=1.4,
+#                                       description="25 steps, 1st step one group, steps 2-10 have 1 added group per step",
+#                                       seednr=1234, stop_crit_fun = NULL,#stop_critX_2,
+#                                       run_commands="-retries=5", 
+#                                       ci_corr=0,option=3)
+# 
+# all(results_mbaod_small$iteration_1$est_summary==results_mbaod_small_2$iteration_1$est_summary,na.rm = T)
+# all(results_mbaod_small$iteration_1$final_design$a==results_mbaod_small_2$iteration_1$final_design$a)
+# 
