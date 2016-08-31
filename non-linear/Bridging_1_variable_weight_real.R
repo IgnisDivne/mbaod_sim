@@ -140,6 +140,6 @@ results_mbaod_small <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anyt
                                       name="propofol_run", lower_limit=0.6,higher_limit=1.4,
                                       description="25 steps, 1st step one group, steps 2-10 have 1 added group per step",
                                       seednr=1234, stop_crit_fun =stop_critX_2,run_commands="-retries=5 -picky", 
-                                      ci_corr=0,option=3)
+                                      ci_corr=0,option=3,optim_fun ="poped_optimize")
 
 

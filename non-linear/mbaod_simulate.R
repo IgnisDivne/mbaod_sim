@@ -11,11 +11,13 @@ mbaod_simulate <- function(cohorts,
                            ED_only_FIM = F,
                            update_params =T,
                            stop_crit_fun = NULL,
-                           run_commands = "",...){
+                           run_commands = "",
+                           optim_fun ="poped_optim",
+                           ...){
   
   # timing
   tic(name=".mbaod_start_time")
-  if(!is.null(seednr)) set.seed(seednr)
+  if(!is.null(seednr)) set.seed(seednr, kind = "default", normal.kind = "default")
   pars_out <- NULL
   # check if directory exists
   valid_name  <- FALSE
@@ -107,7 +109,6 @@ mbaod_simulate <- function(cohorts,
           #           cohort_dir="."
           
           #### combine initial design for current and  final design for all previous cohorts ----------
-          
           design_and_space <- combine_design_and_space(cohort, aod_res)
           
           tot_design <- design_and_space$design
@@ -136,10 +137,10 @@ mbaod_simulate <- function(cohorts,
           #print(tot_space$x_space)
           
           #### optimize cohort ------------
-          opt_output  <- do.call(poped_optimize,
+          opt_output  <- do.call(optim_fun,
                                  c(poped.db=list(design.db),
                                    cohort$optimize$settings.opt,
-                                   out_file=file.path(cohort_dir,"PopED_ouput_summary_RS_opt_gen.txt")))
+                                   out_file=file.path(cohort_dir,"PopED_ouput.txt")))
           
           # update total design with optimized design from output          
           optimized_design <- update_design(tot_design,opt_output)
@@ -312,8 +313,8 @@ mbaod_simulate <- function(cohorts,
         }else{
           stop_res[[paste("cohort_",i,sep="")]] <- stop_res_tmp
           if(i<length(cohorts) & i>1){    #if there is more cohorts, change xspace for the next cohort to allow any new agegroups
-            cohorts[[i+1]]$optimize$design_space$x_space[,] <- stop_res_tmp[2]
-            print("Updating x_space for next cohort to:")
+            cohorts[[i+1]]$optimize$design_space$a_space[,] <- stop_res_tmp[2]
+            print("Updating a_space for next cohort to:")
             print(unlist(stop_res_tmp[2]))
           }
         }
