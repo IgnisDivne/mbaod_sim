@@ -1,0 +1,357 @@
+PopED Results 
+
+        2016-07-15 23:27:03
+
+==============================================================================
+Model description : PopED model 
+
+Model Sizes : 
+Number of individual model parameters                  g[j]    : Ng    = 8
+Number of population model fixed parameters            bpop[j] : Nbpop = 7
+Number of population model random effects parameters   b[j]    : Nb    = 4
+
+Typical Population Parameters:
+bpop[1]:  0.15 
+bpop[2]:     8 
+bpop[3]:     1 
+bpop[4]:     1 
+bpop[5]:   100 
+bpop[6]:     7 
+bpop[7]:     2 
+
+Between Subject Variability matrix D (variance units) 
+0.0700 0.0000 0.0000 0.0000
+0.0000 0.0200 0.0000 0.0000
+0.0000 0.0000 0.0625 0.0000
+0.0000 0.0000 0.0000 0.0625
+
+Diagonal Elements of D [sqrt(param)]:
+D[1,1]:  0.07 [0.2646] 
+D[2,2]:  0.02 [0.1414] 
+D[3,3]: 0.0625 [ 0.25] 
+D[4,4]: 0.0625 [ 0.25] 
+
+Residual Unexplained Variability matrix SIGMA (variance units) : 
+0.0150 0.0000
+0.0000 0.0001
+
+Diagonal Elements of SIGMA [sqrt(param)]:
+SIGMA[1,1]: 0.015 [0.1225] 
+SIGMA[2,2]: 0.0001 [ 0.01] 
+
+==============================================================================
+Experiment description (design and design space)
+
+Numer of individuals: 24
+Number of groups (individuals with same design): 8
+Numer of individuals per group:
+     Group 1: 4
+     Group 2: 4
+     Group 3: 4
+     Group 4: 4
+     Group 5: 2
+     Group 6: 2
+     Group 7: 2
+     Group 8: 2
+Numer of samples per group:
+ Number of discrete experimental variables: 0
+Number of model covariates: 1
+
+Initial Sampling Schedule
+Group 1 :    0.5      2      3      6     24     36     72    120
+Group 2 :    0.5      2      3      6     24     36     72    120
+Group 3 :    0.5      2      3      6     24     36     72    120
+Group 4 :    0.5      2      3      6     24     36     72    120
+Group 5 :    0.5      2      3      6     24     36     72    120
+Group 6 :    0.5      2      3      6     24     36     72    120
+Group 7 :    0.5      2      3      6     24     36     72    120
+Group 8 :    0.5      2      3      6     24     36     72    120
+
+Covariates  (min, max):
+Group 1: 154.654 (154.654, 154.654)
+Group 2: 159.261 (159.261, 159.261)
+Group 3: 1e-04 (1e-04, 1e-04)
+Group 4: 153.928 (153.928, 153.928)
+Group 5: 29.9925 (29.9925, 29.9925)
+Group 6: 28.9554 (28.9554, 28.9554)
+Group 7: 29.2569 (0.0001, 500)
+Group 8: 170 (0.0001, 500)
+
+===============================================================================
+Initial design evaluation
+
+Initial OFV = 37.2109
+
+Efficiency criterion [usually defined as OFV^(1/npar)]  = 1.67641
+==============================================================================
+Criterion Specification
+
+OFV calculation for FIM: 4 
+  1=Determinant of FIM,
+  4=log determinant of FIM,
+  6=determinant of interesting part of FIM (Ds)
+
+Approximation method: 0
+  0=FO, 
+  1=FOCE, 
+  2=FOCEI, 
+  3=FOI
+
+Fisher Information Matrix type: 1
+  0=Full FIM,
+  1=Reduced FIM,
+  2=weighted models,
+  3=Loc models,
+  4=reduced FIM with derivative of SD of sigma as pfim,
+  5=FULL FIM parameterized with A,B,C matrices & derivative of variance,
+  6=Calculate one model switch at a time, good for large matrices,
+  7=Reduced FIM parameterized with A,B,C matrices & derivative of variance
+
+Design family: 1
+  D-family design (1) or 
+  ED-familty design (0) 
+  (with or without parameter uncertainty)
+
+==============================================================================
+Optimization of design parameters
+
+* Optimize Covariates
+
+*******************************
+Initial Value
+ OFV(mf) = 37.2109
+*******************************
+
+RS - It. : 5   OFV : 37.2109
+RS - It. : 10   OFV : 37.2109
+RS - It. : 15   OFV : 37.2207
+RS - It. : 20   OFV : 37.2207
+RS - It. : 25   OFV : 37.2207
+RS - It. : 30   OFV : 37.2207
+RS - It. : 35   OFV : 37.2207
+RS - It. : 40   OFV : 37.2279
+RS - It. : 45   OFV : 37.2279
+RS - It. : 50   OFV : 37.2279
+RS - It. : 55   OFV : 37.2279
+RS - It. : 60   OFV : 37.2279
+RS - It. : 65   OFV : 37.2279
+RS - It. : 70   OFV : 37.2279
+RS - It. : 75   OFV : 37.2279
+RS - It. : 80   OFV : 37.2279
+RS - It. : 85   OFV : 37.2279
+RS - It. : 90   OFV : 37.2279
+RS - It. : 95   OFV : 37.2279
+RS - It. : 100   OFV : 37.2279
+RS - It. : 105   OFV : 37.2279
+RS - It. : 110   OFV : 37.2279
+RS - It. : 115   OFV : 37.2279
+RS - It. : 120   OFV : 37.2279
+RS - It. : 125   OFV : 37.2279
+RS - It. : 130   OFV : 37.2279
+RS - It. : 135   OFV : 37.2279
+RS - It. : 140   OFV : 37.2279
+RS - It. : 145   OFV : 37.2279
+RS - It. : 150   OFV : 37.2279
+RS - It. : 155   OFV : 37.2279
+RS - It. : 160   OFV : 37.2279
+RS - It. : 165   OFV : 37.2279
+RS - It. : 170   OFV : 37.2279
+RS - It. : 175   OFV : 37.2279
+RS - It. : 180   OFV : 37.2279
+RS - It. : 185   OFV : 37.2279
+RS - It. : 190   OFV : 37.2279
+RS - It. : 195   OFV : 37.2279
+RS - It. : 200   OFV : 37.2279
+RS - It. : 205   OFV : 37.2279
+RS - It. : 210   OFV : 37.2279
+RS - It. : 215   OFV : 37.2279
+RS - It. : 220   OFV : 37.2279
+RS - It. : 225   OFV : 37.2279
+RS - It. : 230   OFV : 37.2279
+RS - It. : 235   OFV : 37.2279
+RS - It. : 240   OFV : 37.2279
+RS - It. : 245   OFV : 37.2279
+RS - It. : 250   OFV : 37.2279
+RS - It. : 255   OFV : 37.2279
+RS - It. : 260   OFV : 37.2279
+RS - It. : 265   OFV : 37.2279
+RS - It. : 270   OFV : 37.2279
+RS - It. : 275   OFV : 37.2279
+RS - It. : 280   OFV : 37.2279
+RS - It. : 285   OFV : 37.2279
+RS - It. : 290   OFV : 37.2279
+RS - It. : 295   OFV : 37.2279
+RS - It. : 300   OFV : 37.2279
+
+*******************************
+RS Results
+ OFV(mf) = 37.2279
+
+
+Optimized Covariates:
+Group 1: 154.654
+Group 2: 159.261
+Group 3: 1e-04
+Group 4: 153.928
+Group 5: 29.9925
+Group 6: 28.9554
+Group 7: 30.9166
+Group 8: 117.58
+
+*********************************
+
+*****************************
+            Line Search
+
+group 8 -- a[1] changed from  117.58 to  120
+     OFV(MF) changed from 37.2279 to 37.2279 
+Best value for OFV(MF) = 37.2279
+
+Best value for a: 
+Group 1: 154.654
+Group 2: 159.261
+Group 3: 1e-04
+Group 4: 153.928
+Group 5: 29.9925
+Group 6: 28.9554
+Group 7: 30.9166
+Group 8: 120
+
+
+Line search run time: 8.8 seconds
+***************************
+
+*******************************
+Initial Value
+ OFV(mf) = 37.2279
+*******************************
+
+RS - It. : 5   OFV : 37.2279
+RS - It. : 10   OFV : 37.2279
+RS - It. : 15   OFV : 37.2279
+RS - It. : 20   OFV : 37.2279
+RS - It. : 25   OFV : 37.2279
+RS - It. : 30   OFV : 37.2279
+RS - It. : 35   OFV : 37.2279
+RS - It. : 40   OFV : 37.2279
+RS - It. : 45   OFV : 37.2279
+RS - It. : 50   OFV : 37.2279
+RS - It. : 55   OFV : 37.2279
+RS - It. : 60   OFV : 37.2279
+RS - It. : 65   OFV : 37.2279
+RS - It. : 70   OFV : 37.2279
+RS - It. : 75   OFV : 37.2279
+RS - It. : 80   OFV : 37.2279
+RS - It. : 85   OFV : 37.2279
+RS - It. : 90   OFV : 37.2279
+RS - It. : 95   OFV : 37.2279
+RS - It. : 100   OFV : 37.2279
+RS - It. : 105   OFV : 37.2279
+RS - It. : 110   OFV : 37.2279
+RS - It. : 115   OFV : 37.2279
+RS - It. : 120   OFV : 37.2279
+RS - It. : 125   OFV : 37.2279
+RS - It. : 130   OFV : 37.2279
+RS - It. : 135   OFV : 37.2279
+RS - It. : 140   OFV : 37.2279
+RS - It. : 145   OFV : 37.2279
+RS - It. : 150   OFV : 37.2279
+RS - It. : 155   OFV : 37.2279
+RS - It. : 160   OFV : 37.2279
+RS - It. : 165   OFV : 37.2279
+RS - It. : 170   OFV : 37.2279
+RS - It. : 175   OFV : 37.2279
+RS - It. : 180   OFV : 37.2279
+RS - It. : 185   OFV : 37.2279
+RS - It. : 190   OFV : 37.2279
+RS - It. : 195   OFV : 37.2279
+RS - It. : 200   OFV : 37.2279
+RS - It. : 205   OFV : 37.2279
+RS - It. : 210   OFV : 37.2279
+RS - It. : 215   OFV : 37.2279
+RS - It. : 220   OFV : 37.2279
+RS - It. : 225   OFV : 37.2279
+RS - It. : 230   OFV : 37.2279
+RS - It. : 235   OFV : 37.2279
+RS - It. : 240   OFV : 37.2279
+RS - It. : 245   OFV : 37.2279
+RS - It. : 250   OFV : 37.2279
+RS - It. : 255   OFV : 37.2279
+RS - It. : 260   OFV : 37.2279
+RS - It. : 265   OFV : 37.2279
+RS - It. : 270   OFV : 37.2279
+RS - It. : 275   OFV : 37.2279
+RS - It. : 280   OFV : 37.2279
+RS - It. : 285   OFV : 37.2279
+RS - It. : 290   OFV : 37.2279
+RS - It. : 295   OFV : 37.2279
+RS - It. : 300   OFV : 37.2279
+
+*******************************
+RS Results
+ OFV(mf) = 37.2279
+
+
+Optimized Covariates:
+Group 1: 154.654
+Group 2: 159.261
+Group 3: 1e-04
+Group 4: 153.928
+Group 5: 29.9925
+Group 6: 28.9554
+Group 7: 30.9257
+Group 8: 118.416
+
+*********************************
+
+*****************************
+            Line Search
+
+Best value for OFV(MF) = 37.2279
+
+Best value for a: 
+Group 1: 154.654
+Group 2: 159.261
+Group 3: 1e-04
+Group 4: 153.928
+Group 5: 29.9925
+Group 6: 28.9554
+Group 7: 30.9257
+Group 8: 118.416
+
+
+Line search run time: 9.04 seconds
+***************************
+
+===============================================================================
+FINAL RESULTS
+
+Optimized Covariates:
+Group 1: 154.654
+Group 2: 159.261
+Group 3: 1e-04
+Group 4: 153.928
+Group 5: 29.9925
+Group 6: 28.9554
+Group 7: 30.9257
+Group 8: 118.416
+
+ FIM: 
+ 2.245802e+03  2.714980e-02 -7.399869e-01 -7.293559e+01  0.000000e+00  0.000000e+00  0.000000e+00
+ 2.714980e-02  2.199212e-02 -9.054110e-02  3.796982e-01  0.000000e+00  0.000000e+00  0.000000e+00
+-7.399869e-01 -9.054110e-02  3.921769e+00  7.701016e+00  0.000000e+00  0.000000e+00  0.000000e+00
+-7.293559e+01  3.796982e-01  7.701016e+00  2.434741e+02  0.000000e+00  0.000000e+00  0.000000e+00
+ 0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  1.417637e+03  1.227424e+02  7.676421e+02
+ 0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  1.227424e+02  9.250499e+02  1.023889e+03
+ 0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  7.676421e+02  1.023889e+03  3.092553e+05
+
+
+Inverse(FIM):
+
+OFV = 37.2279
+
+Efficiency criterion [usually defined as OFV^(1/npar)]  = 1.67652
+
+Efficiency [typically: (OFV_final/OFV_initial)^(1/npar)]: 1.00007
+
+Total running time: 71.76 seconds
