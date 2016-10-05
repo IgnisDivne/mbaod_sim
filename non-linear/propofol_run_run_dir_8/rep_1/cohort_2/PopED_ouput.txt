@@ -1,0 +1,802 @@
+PopED Results 
+
+        2016-09-01 11:53:18
+
+==============================================================================
+Model description : PopED model 
+
+Model Sizes : 
+Number of individual model parameters                  g[j]    : Ng    = 7
+Number of population model fixed parameters            bpop[j] : Nbpop = 4
+Number of population model random effects parameters   b[j]    : Nb    = 2
+
+Typical Population Parameters:
+bpop[1]: 1.052 
+bpop[2]: 3.067 
+bpop[3]: 3.651 
+bpop[4]: 1.526 
+
+Between Subject Variability matrix D (variance units) 
+0.0730169 0.0000000
+0.0000000 0.0766870
+
+Diagonal Elements of D [sqrt(param)]:
+D[1,1]: 0.07302 [0.2702] 
+D[2,2]: 0.07669 [0.2769] 
+
+Residual Unexplained Variability matrix SIGMA (variance units) : 
+0.0140893 0.0000000
+0.0000000 0.0001000
+
+Diagonal Elements of SIGMA [sqrt(param)]:
+SIGMA[1,1]: 0.01409 [0.1187] 
+SIGMA[2,2]: 0.0001 [ 0.01] 
+
+==============================================================================
+Experiment description (design and design space)
+
+Numer of individuals: 112
+Number of groups (individuals with same design): 7
+Numer of individuals per group:
+     Group 1: 100
+     Group 2: 2
+     Group 3: 2
+     Group 4: 2
+     Group 5: 2
+     Group 6: 2
+     Group 7: 2
+Numer of samples per group:
+ Number of discrete experimental variables: 0
+Number of model covariates: 1
+
+Initial Sampling Schedule
+Group 1 :    0.1      2      6     12     24
+Group 2 :    0.1      2      6     12     24
+Group 3 :    0.1      2      6     12     24
+Group 4 :    0.1      2      6     12     24
+Group 5 :    0.1      2      6     12     24
+Group 6 :    0.1      2      6     12     24
+Group 7 :    0.1      2      6     12     24
+
+Covariates  (min, max):
+Group 1: 7 (7, 7)
+Group 2: 6 (1, 6)
+Group 3: 5 (1, 6)
+Group 4: 4 (1, 6)
+Group 5: 3 (1, 6)
+Group 6: 2 (1, 6)
+Group 7: 1 (1, 6)
+
+===============================================================================
+Initial design evaluation
+
+Initial OFV = 45.621
+
+Efficiency criterion [usually defined as OFV^(1/npar)]  = 676.736
+
+Initial design expected parameter 
+relative standard error (%RSE)
+    Parameter   Values     RSE_0
+      bpop[1]   1.0522     2.535
+      bpop[2]   3.0673     0.885
+      bpop[3]   3.6510    53.198
+      bpop[4]   1.5261   273.022
+       D[1,1]   0.0730    13.874
+       D[2,2]   0.0767    14.355
+   SIGMA[1,1]   0.0141     7.714
+
+==============================================================================
+Criterion Specification
+
+OFV calculation for FIM: 4 
+  1=Determinant of FIM,
+  4=log determinant of FIM,
+  6=determinant of interesting part of FIM (Ds)
+
+Approximation method: 0
+  0=FO, 
+  1=FOCE, 
+  2=FOCEI, 
+  3=FOI
+
+Fisher Information Matrix type: 1
+  0=Full FIM,
+  1=Reduced FIM,
+  2=weighted models,
+  3=Loc models,
+  4=reduced FIM with derivative of SD of sigma as pfim,
+  5=FULL FIM parameterized with A,B,C matrices & derivative of variance,
+  6=Calculate one model switch at a time, good for large matrices,
+  7=Reduced FIM parameterized with A,B,C matrices & derivative of variance
+
+Design family: 1
+  D-family design (1) or 
+  ED-familty design (0) 
+  (with or without parameter uncertainty)
+
+==============================================================================
+Optimization of design parameters
+
+* Optimize Covariates
+
+************* Iteration 1  for all optimization methods***********************
+
+*******************************************
+Running Line Search Optimization
+*******************************************
+Called from: checkForRemoteErrors(lapply(cl, recvResult))
+
+----------------------
+--------- Running Iteration 1 
+----------------------
+
+
+----------------------
+--------- Running cohort 1 in iteration 1 
+----------------------
+
+
+    ----------------------
+    --------- Simulating Data for Cohort 1 in iteration 1 
+    ----------------------
+
+[1] "propofol_run_run_dir_9/rep_1/cohort_1"
+
+    ----------------------
+    --------- Estimating parameters for Cohort 1 in iteration 1 
+    ----------------------
+
+[1] "--::::Checking Stopping Criteria for Cohort 1 ::::--"
+[1] FALSE
+
+----------------------
+--------- Running cohort 2 in iteration 1 
+----------------------
+
+
+    ----------------------
+    --------- Optimizing design for Cohort 2 in iteration 1 
+    ----------------------
+
+===============================================================================
+Initial design evaluation
+
+Initial OFV = 45.621
+
+Efficiency criterion [usually defined as OFV^(1/npar)]  = 676.736
+
+Initial design expected parameter 
+relative standard error (%RSE)
+    Parameter   Values     RSE_0
+      bpop[1]   1.0522     2.535
+      bpop[2]   3.0673     0.885
+      bpop[3]   3.6510    53.198
+      bpop[4]   1.5261   273.022
+       D[1,1]   0.0730    13.874
+       D[2,2]   0.0767    14.355
+   SIGMA[1,1]   0.0141     7.714
+
+************* Iteration 1  for all optimization methods***********************
+
+*******************************************
+Running Line Search Optimization
+*******************************************
+
+   Initial parameters: 6 5 4 3 2 1 
+   Initial OFV: 45.62097 
+
+   Searching parameter 6 
+     No change 
+   Searching parameter 3 
+     Changed from 4 to 1 ; OFV = 46.2935 
+   Searching parameter 5 
+     No change 
+   Searching parameter 2 
+     Changed from 5 to 2 ; OFV = 46.899 
+   Searching parameter 1 
+     Changed from 6 to 1 ; OFV = 47.2837 
+   Searching parameter 4 
+     Changed from 3 to 2 ; OFV = 47.6054 
+
+   Elapsed time: 17.41 seconds.
+
+   Final OFV =  47.6054 
+   Parameters: 1 2 1 2 2 1 
+
+*******************************************
+Stopping criteria testing
+(Compare between start of iteration and end of iteration)
+*******************************************
+Difference in OFV:  1.98
+Relative difference in OFV:  4.35%
+Efficiency: 
+  ((exp(ofv_final) / exp(ofv_init))^(1/n_parameters)) = 1.3278
+
+ Efficiency stopping criteria: 
+  Is (1.3278 <= 1.001)?   No.
+  Stopping criteria NOT achieved.
+
+Stopping criteria NOT achieved.
+
+************* Iteration 2  for all optimization methods***********************
+
+*******************************************
+Running Line Search Optimization
+*******************************************
+
+   Initial parameters: 1 2 1 2 2 1 
+   Initial OFV: 47.6054 
+
+   Searching parameter 4 
+     No change 
+   Searching parameter 3 
+     No change 
+   Searching parameter 6 
+     No change 
+   Searching parameter 5 
+     No change 
+   Searching parameter 2 
+     No change 
+   Searching parameter 1 
+     No change 
+
+   Elapsed time: 17.15 seconds.
+
+   Final OFV =  47.6054 
+   Parameters: 1 2 1 2 2 1 
+
+*******************************************
+Stopping criteria testing
+(Compare between start of iteration and end of iteration)
+*******************************************
+Difference in OFV:  0
+Relative difference in OFV:  0%
+Efficiency: 
+  ((exp(ofv_final) / exp(ofv_init))^(1/n_parameters)) = 1
+
+ Efficiency stopping criteria: 
+  Is (1 <= 1.001)?   Yes.
+  Stopping criteria achieved.
+
+Stopping criteria achieved.
+
+===============================================================================
+FINAL RESULTS
+
+Optimized Covariates:
+Group 1: 7
+Group 2: 1
+Group 3: 2
+Group 4: 1
+Group 5: 2
+Group 6: 2
+Group 7: 1
+
+OFV = 47.6054
+
+Efficiency: 
+  ((exp(ofv_final) / exp(ofv_init))^(1/n_parameters)) = 1.3278
+
+Expected parameter 
+relative standard error (%RSE):
+    Parameter   Values     RSE_0       RSE
+      bpop[1]   1.0522     2.535     2.618
+      bpop[2]   3.0673     0.885     0.885
+      bpop[3]   3.6510    53.198    32.892
+      bpop[4]   1.5261   273.022   170.215
+       D[1,1]   0.0730    13.874    13.877
+       D[2,2]   0.0767    14.355    14.355
+   SIGMA[1,1]   0.0141     7.714     7.716
+
+Total running time: 35 seconds
+
+    ----------------------
+    --------- Simulating Data for Cohort 2 in iteration 1 
+    ----------------------
+
+[1] "propofol_run_run_dir_9/rep_1/cohort_2"
+
+    ----------------------
+    --------- Estimating parameters for Cohort 2 in iteration 1 
+    ----------------------
+
+[1] "--::::Checking Stopping Criteria for Cohort 2 ::::--"
+[1] FALSE
+             THETA1      THETA2       THETA3     THETA4
+THETA1  6.53522e-04 7.55667e-05 -0.001770460 -0.0052168
+THETA2  7.55667e-05 6.37718e-04  0.000974538  0.0017392
+THETA3 -1.77046e-03 9.74538e-04  1.190750000  1.7581900
+THETA4 -5.21680e-03 1.73920e-03  1.758190000  2.6405600
+[1] "You have selected option 3."
+[1] "Entering Option 3"
+              THETA1       THETA2       THETA3       THETA4
+THETA1  0.0004356813 0.0000503778 -0.001180307 -0.003477867
+THETA2  0.0000503778 0.0004251453  0.000649692  0.001159467
+THETA3 -0.0011803067 0.0006496920  0.793833333  1.172126667
+THETA4 -0.0034778667 0.0011594667  1.172126667  1.760373333
+
+[1] "___ Pediatric Sub Population 1 : Children of age 3 to <5 months ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 3 to <5 months :"
+[1] 5.018399e-24 9.920230e+01
+[1] "Scaled logV for age 3 to <5 months :"
+[1] 0.9512408 1.0512958
+[1] "Stopping criteria NOT reached for population 1"
+
+[1] "___ Pediatric Sub Population 2 : Children of age 6 to <12 months ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 6 to <12 months :"
+[1] 1.131971e-18 3.057486e+01
+[1] "Scaled logV for age 6 to <12 months :"
+[1] 0.951147 1.051249
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 6 to <12 months :"
+[1] 3.504930e-16 2.007819e+01
+[1] "Scaled logV for age 6 to <12 months :"
+[1] 0.9511756 1.0513247
+[1] "Stopping criteria NOT reached for population 2"
+
+[1] "___ Pediatric Sub Population 3 : Children of age 1 to <2 years ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 1 to <2 years :"
+[1] 9.288887e-11 6.990609e+00
+[1] "Scaled logV for age 1 to <2 years :"
+[1] 0.9511317 1.0513179
+[1] "Stopping criteria NOT reached for population 3"
+
+[1] "___ Pediatric Sub Population 4 : Children of age 2 to <6 years ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 2 to <6 years :"
+[1] 0.0006829369 2.7692218618
+[1] "Scaled logV for age 2 to <6 years :"
+[1] 0.9511657 1.0511376
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 2 to <6 years :"
+[1] 0.8274438 1.7432454
+[1] "Scaled logV for age 2 to <6 years :"
+[1] 0.9510876 1.0514021
+[1] "Stopping criteria NOT reached for population 4"
+
+[1] "___ Pediatric Sub Population 5 : Children of age 6 to <12 years ___"
+[1] "Stopping criteria reached for sub population 5"
+
+[1] "___ Pediatric Sub Population 6 : Children of age 12 to 18 years ___"
+[1] "Stopping criteria reached for sub population 6"
+
+[1] "Stopping criteria NOT reached for all groups, starting next cohort"
+[1] "Updating a_space for next cohort to:"
+[1] 4 5 6
+
+----------------------
+--------- Running cohort 3 in iteration 1 
+----------------------
+
+
+    ----------------------
+    --------- Optimizing design for Cohort 3 in iteration 1 
+    ----------------------
+
+===============================================================================
+Initial design evaluation
+
+Initial OFV = 49.0865
+
+Efficiency criterion [usually defined as OFV^(1/npar)]  = 1110.26
+
+Initial design expected parameter 
+relative standard error (%RSE)
+    Parameter   Values     RSE_0
+      bpop[1]   0.9777     2.566
+      bpop[2]   2.9656     0.838
+      bpop[3]   3.4085    41.157
+      bpop[4]   0.8439   221.435
+       D[1,1]   0.0596    13.887
+       D[2,2]   0.0644    14.448
+   SIGMA[1,1]   0.0146     7.643
+
+************* Iteration 1  for all optimization methods***********************
+
+*******************************************
+Running Line Search Optimization
+*******************************************
+
+   Initial parameters: 6 6 
+   Initial OFV: 49.08647 
+
+   Searching parameter 1 
+     Changed from 6 to 4 ; OFV = 49.1098 
+   Searching parameter 2 
+     Changed from 6 to 4 ; OFV = 49.1321 
+
+   Elapsed time: 3.37 seconds.
+
+   Final OFV =  49.13212 
+   Parameters: 4 4 
+
+*******************************************
+Stopping criteria testing
+(Compare between start of iteration and end of iteration)
+*******************************************
+Difference in OFV:  0.0456
+Relative difference in OFV:  0.093%
+Efficiency: 
+  ((exp(ofv_final) / exp(ofv_init))^(1/n_parameters)) = 1.0065
+
+ Efficiency stopping criteria: 
+  Is (1.0065 <= 1.001)?   No.
+  Stopping criteria NOT achieved.
+
+Stopping criteria NOT achieved.
+
+************* Iteration 2  for all optimization methods***********************
+
+*******************************************
+Running Line Search Optimization
+*******************************************
+
+   Initial parameters: 4 4 
+   Initial OFV: 49.13212 
+
+   Searching parameter 1 
+     No change 
+   Searching parameter 2 
+     No change 
+
+   Elapsed time: 3.34 seconds.
+
+   Final OFV =  49.13212 
+   Parameters: 4 4 
+
+*******************************************
+Stopping criteria testing
+(Compare between start of iteration and end of iteration)
+*******************************************
+Difference in OFV:  0
+Relative difference in OFV:  0%
+Efficiency: 
+  ((exp(ofv_final) / exp(ofv_init))^(1/n_parameters)) = 1
+
+ Efficiency stopping criteria: 
+  Is (1 <= 1.001)?   Yes.
+  Stopping criteria achieved.
+
+Stopping criteria achieved.
+
+===============================================================================
+FINAL RESULTS
+
+Optimized Covariates:
+Group 1: 7
+Group 2: 1
+Group 3: 2
+Group 4: 1
+Group 5: 2
+Group 6: 2
+Group 7: 1
+Group 8: 4
+Group 9: 4
+
+OFV = 49.1321
+
+Efficiency: 
+  ((exp(ofv_final) / exp(ofv_init))^(1/n_parameters)) = 1.0065
+
+Expected parameter 
+relative standard error (%RSE):
+    Parameter   Values     RSE_0       RSE
+      bpop[1]   0.9777     2.566     2.580
+      bpop[2]   2.9656     0.838     0.838
+      bpop[3]   3.4085    41.157    40.192
+      bpop[4]   0.8439   221.435   216.259
+       D[1,1]   0.0596    13.887    13.888
+       D[2,2]   0.0644    14.448    14.447
+   SIGMA[1,1]   0.0146     7.643     7.643
+
+Total running time: 7.2 seconds
+
+    ----------------------
+    --------- Simulating Data for Cohort 3 in iteration 1 
+    ----------------------
+
+[1] "propofol_run_run_dir_9/rep_1/cohort_3"
+
+    ----------------------
+    --------- Estimating parameters for Cohort 3 in iteration 1 
+    ----------------------
+
+[1] "--::::Checking Stopping Criteria for Cohort 3 ::::--"
+[1] FALSE
+             THETA1      THETA2       THETA3       THETA4
+THETA1  6.34042e-04 7.42804e-05 -0.000743404 -0.003691500
+THETA2  7.42804e-05 6.16832e-04  0.000218046  0.000695331
+THETA3 -7.43404e-04 2.18046e-04  0.315225000  0.526443000
+THETA4 -3.69150e-03 6.95331e-04  0.526443000  0.924171000
+[1] "You have selected option 3."
+[1] "Entering Option 3"
+              THETA1       THETA2        THETA3        THETA4
+THETA1  0.0004755315 0.0000557103 -0.0005575530 -0.0027686250
+THETA2  0.0000557103 0.0004626240  0.0001635345  0.0005214982
+THETA3 -0.0005575530 0.0001635345  0.2364187500  0.3948322500
+THETA4 -0.0027686250 0.0005214982  0.3948322500  0.6931282500
+
+[1] "___ Pediatric Sub Population 1 : Children of age 3 to <5 months ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 3 to <5 months :"
+[1] 0.0006766702 2.8674131381
+[1] "Scaled logV for age 3 to <5 months :"
+[1] 0.9519299 1.0504891
+[1] "Stopping criteria NOT reached for population 1"
+
+[1] "___ Pediatric Sub Population 2 : Children of age 6 to <12 months ___"
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 6 to <12 months :"
+[1] 0.0468195 1.8651636
+[1] "Scaled logV for age 6 to <12 months :"
+[1] 0.9520236 1.0505286
+[1] " All Parameter CIs NOT within 60%-140% (0.6-1.4) of geometric mean: "
+[1] "Scaled logCL for age 6 to <12 months :"
+[1] 0.2137651 1.6676630
+[1] "Scaled logV for age 6 to <12 months :"
+[1] 0.9519561 1.0504818
+[1] "Stopping criteria NOT reached for population 2"
+
+[1] "___ Pediatric Sub Population 3 : Children of age 1 to <2 years ___"
+[1] "Stopping criteria reached for sub population 3"
+
+[1] "___ Pediatric Sub Population 4 : Children of age 2 to <6 years ___"
+[1] "Stopping criteria reached for sub population 4"
+
+[1] "___ Pediatric Sub Population 5 : Children of age 6 to <12 years ___"
+[1] "Stopping criteria reached for sub population 5"
+
+[1] "___ Pediatric Sub Population 6 : Children of age 12 to 18 years ___"
+[1] "Stopping criteria reached for sub population 6"
+
+[1] "Stopping criteria NOT reached for all groups, starting next cohort"
+[1] "Updating a_space for next cohort to:"
+[1] 2 3 4 5 6
+
+----------------------
+--------- Running cohort 4 in iteration 1 
+----------------------
+
+
+    ----------------------
+    --------- Optimizing design for Cohort 4 in iteration 1 
+    ----------------------
+
+===============================================================================
+Initial design evaluation
+
+Initial OFV = 49.5191
+
+Efficiency criterion [usually defined as OFV^(1/npar)]  = 1181.05
+
+Initial design expected parameter 
+relative standard error (%RSE)
+    Parameter   Values     RSE_0
+      bpop[1]   0.9787     2.520
+      bpop[2]   2.9636     0.825
+      bpop[3]   3.4620    34.890
+      bpop[4]   0.9205   189.121
+       D[1,1]   0.0588    13.785
+       D[2,2]   0.0633    14.360
+   SIGMA[1,1]   0.0148     7.577
+
+************* Iteration 1  for all optimization methods***********************
+
+*******************************************
+Running Line Search Optimization
+*******************************************
+
+   Initial parameters: 6 6 
+   Initial OFV: 49.51909 
+
+   Searching parameter 1 
+     Changed from 6 to 2 ; OFV = 49.6594 
+   Searching parameter 2 
+     Changed from 6 to 2 ; OFV = 49.78 
+
+   Elapsed time: 6.4 seconds.
+
+   Final OFV =  49.77997 
+   Parameters: 2 2 
+
+*******************************************
+Stopping criteria testing
+(Compare between start of iteration and end of iteration)
+*******************************************
+Difference in OFV:  0.261
+Relative difference in OFV:  0.527%
+Efficiency: 
+  ((exp(ofv_final) / exp(ofv_init))^(1/n_parameters)) = 1.038
+
+ Efficiency stopping criteria: 
+  Is (1.038 <= 1.001)?   No.
+  Stopping criteria NOT achieved.
+
+Stopping criteria NOT achieved.
+
+************* Iteration 2  for all optimization methods***********************
+
+*******************************************
+Running Line Search Optimization
+*******************************************
+
+   Initial parameters: 2 2 
+   Initial OFV: 49.77997 
+
+   Searching parameter 1 
+     No change 
+   Searching parameter 2 
+     No change 
+
+   Elapsed time: 6.47 seconds.
+
+   Final OFV =  49.77997 
+   Parameters: 2 2 
+
+*******************************************
+Stopping criteria testing
+(Compare between start of iteration and end of iteration)
+*******************************************
+Difference in OFV:  0
+Relative difference in OFV:  0%
+Efficiency: 
+  ((exp(ofv_final) / exp(ofv_init))^(1/n_parameters)) = 1
+
+ Efficiency stopping criteria: 
+  Is (1 <= 1.001)?   Yes.
+  Stopping criteria achieved.
+
+Stopping criteria achieved.
+
+===============================================================================
+FINAL RESULTS
+
+Optimized Covariates:
+Group 1: 7
+Group 2: 1
+Group 3: 2
+Group 4: 1
+Group 5: 2
+Group 6: 2
+Group 7: 1
+Group 8: 4
+Group 9: 4
+Group 10: 2
+Group 11: 2
+
+OFV = 49.78
+
+Efficiency: 
+  ((exp(ofv_final) / exp(ofv_init))^(1/n_parameters)) = 1.038
+
+Expected parameter 
+relative standard error (%RSE):
+    Parameter   Values     RSE_0       RSE
+      bpop[1]   0.9787     2.520     2.543
+      bpop[2]   2.9636     0.825     0.825
+      bpop[3]   3.4620    34.890    32.182
+      bpop[4]   0.9205   189.121   170.594
+       D[1,1]   0.0588    13.785    13.787
+       D[2,2]   0.0633    14.360    14.360
+   SIGMA[1,1]   0.0148     7.577     7.577
+
+Total running time: 13.43 seconds
+
+    ----------------------
+    --------- Simulating Data for Cohort 4 in iteration 1 
+    ----------------------
+
+[1] "propofol_run_run_dir_9/rep_1/cohort_4"
+
+    ----------------------
+    --------- Estimating parameters for Cohort 4 in iteration 1 
+    ----------------------
+
+[1] "--::::Checking Stopping Criteria for Cohort 4 ::::--"
+[1] FALSE
+             THETA1       THETA2       THETA3       THETA4
+THETA1  6.06832e-04  7.05613e-05  0.000381785 -0.001115870
+THETA2  7.05613e-05  5.98444e-04 -0.000127702 -0.000103275
+THETA3  3.81785e-04 -1.27702e-04  0.021330200  0.076544200
+THETA4 -1.11587e-03 -1.03275e-04  0.076544200  0.322805000
+[1] "You have selected option 3."
+[1] "Entering Option 3"
+              THETA1        THETA2        THETA3       THETA4
+THETA1  4.854656e-04  5.644904e-05  0.0003054280 -0.000892696
+THETA2  5.644904e-05  4.787552e-04 -0.0001021616 -0.000082620
+THETA3  3.054280e-04 -1.021616e-04  0.0170641600  0.061235360
+THETA4 -8.926960e-04 -8.262000e-05  0.0612353600  0.258244000
+
+[1] "___ Pediatric Sub Population 1 : Children of age 3 to <5 months ___"
+[1] "Stopping criteria reached for sub population 1"
+
+[1] "___ Pediatric Sub Population 2 : Children of age 6 to <12 months ___"
+[1] "Stopping criteria reached for sub population 2"
+
+[1] "___ Pediatric Sub Population 3 : Children of age 1 to <2 years ___"
+[1] "Stopping criteria reached for sub population 3"
+
+[1] "___ Pediatric Sub Population 4 : Children of age 2 to <6 years ___"
+[1] "Stopping criteria reached for sub population 4"
+
+[1] "___ Pediatric Sub Population 5 : Children of age 6 to <12 years ___"
+[1] "Stopping criteria reached for sub population 5"
+
+[1] "___ Pediatric Sub Population 6 : Children of age 12 to 18 years ___"
+[1] "Stopping criteria reached for sub population 6"
+
+[1] "Stopping criteria reached for all groups, stopping MBAOD"
+
+----------------------
+--------- Summary of results for iteration  1 
+----------------------
+
+Elapsed time: 499.92 seconds.
+
+--------- Final Design
+
+Sampling Schedule -----
+
+Group 1 :    0.1      2      6     12     24
+Group 2 :    0.1      2      6     12     24
+Group 3 :    0.1      2      6     12     24
+Group 4 :    0.1      2      6     12     24
+Group 5 :    0.1      2      6     12     24
+Group 6 :    0.1      2      6     12     24
+Group 7 :    0.1      2      6     12     24
+Group 8 :    0.1      2      6     12     24
+Group 9 :    0.1      2      6     12     24
+Group 10 :    0.1      2      6     12     24
+Group 11 :    0.1      2      6     12     24
+
+Covariates -----
+            age_group
+Group 1 :           7
+Group 2 :           1
+Group 3 :           2
+Group 4 :           1
+Group 5 :           2
+Group 6 :           2
+Group 7 :           1
+Group 8 :           4
+Group 9 :           4
+Group 10 :          2
+Group 11 :          2
+
+Groupsize -----
+               
+Group 1 :   100
+Group 2 :     2
+Group 3 :     2
+Group 4 :     2
+Group 5 :     2
+Group 6 :     2
+Group 7 :     2
+Group 8 :     1
+Group 9 :     1
+Group 10 :    1
+Group 11 :    1
+
+--------- Parameter estimation after each cohort
+                        Cohort_1 Cohort_2 Cohort_3 Cohort_4
+THETA_1                    1.052    0.978    0.979    0.981
+THETA_2                     3.07     2.97     2.96     2.96
+THETA_3                       NA     3.41     3.46     3.74
+THETA_4                       NA    0.844    0.921    1.622
+OMEGA_sd_1_1               0.270    0.244    0.243    0.245
+OMEGA_sd_2_2               0.277    0.254    0.252    0.250
+SIGMA_sd_1_1               0.119    0.121    0.122    0.122
+SIGMA_sd_2_2                0.01     0.01     0.01     0.01
+RSE_THETA_1               0.0264   0.0261   0.0257   0.0251
+RSE_THETA_2              0.00948  0.00852  0.00838  0.00826
+RSE_THETA_3                   NA    0.320    0.162    0.039
+RSE_THETA_4                   NA     1.93     1.04     0.35
+RSE_OMEGA_sd_1_1          0.0865   0.0739   0.0736   0.0713
+RSE_OMEGA_sd_2_2          0.0802   0.0762   0.0759   0.0753
+RSE_SIGMA_sd_1_1          0.0393   0.0370   0.0370   0.0366
+RSE_SIGMA_sd_2_2              NA       NA       NA       NA
+OFV                         1774     1897     1922     1938
+Minimization_Successful        1        1        1        1

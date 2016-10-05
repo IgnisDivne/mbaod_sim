@@ -19,7 +19,7 @@ rm(list=ls())
 if(Sys.getenv("LOGNAME")=="ahooker"){
   devtools::load_all("~/Documents/_PROJECTS/PopED/repos/PopED")
 } else {
-  library(PopED)
+  devtools::load_all("C:/Users/erist836/Documents/GitHub/PopED")
 }
 library(mvtnorm)
 library(xpose4)
@@ -28,7 +28,7 @@ library(xpose4)
 if(Sys.getenv("LOGNAME")=="ahooker"){
   devtools::load_all("~/Documents/_PROJECTS/AOD/repos/MBAOD")
 } else {
-  devtools::load_all("C:/Users/erist836/Documents/GitHub/MBAOD/R")
+  devtools::load_all("C:/Users/erist836/Documents/GitHub/MBAOD")
 }
 
 # load the PopED model file 
@@ -100,7 +100,7 @@ step_2 = list(
                 settings.opt=list(
                   opt_xt=F,
                   opt_a=T,
-                  parallel=T,
+                  parallel=F,
                   method=c("LS"), 
                   loop_methods=T
                   # opt_x=T,
@@ -139,7 +139,7 @@ step_3$optimize$design_space$a_space<- a.space
 results_mbaod_small <- mbaod_simulate(cohorts=list(step_1,step_2,step_3), # anything after step_3 is the same as step_3
                                       #ncohorts=50, # number of steps or cohorts in one AOD
                                       ncohorts=50, # allowed number of steps or cohorts in one AOD
-                                      rep=1, #number of times to repeat the MBAOD simulation 
+                                      rep=100, #number of times to repeat the MBAOD simulation 
                                       name="propofol_run", lower_limit=0.6,higher_limit=1.4,
                                       description="50 possible steps",
                                       seednr=1234, stop_crit_fun = stop_critX_2,

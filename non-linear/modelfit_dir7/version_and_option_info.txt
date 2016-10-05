@@ -1,0 +1,70 @@
+PsN version: 4.5.16
+Run started: 2016-09-01 at 11:54
+version_and_option_info.txt is overwitten if the run is restarted later using option -directory.
+The original file from the first call is saved as original_version_and_option_info.txt.
+
+Command:
+C:\Strawberry\perl\bin/execute propofol_run_run_dir_9/rep_1/cohort_1/sim.mod
+
+NONMEM:
+C:/nm73
+
+Actual values optional execute options (undefined values not listed):
+-copy_data=1
+-prepend_options_to_lst=0
+-tail_output=0
+
+Actual values optional PsN (common) options (undefined values not listed):
+-abort_on_fail=0
+-accepted_ofv_difference=0.5
+-add_retries=0
+-check_nmtran=0
+-clean=1
+-compress=0
+-condition_number_limit=1000
+-correlation_limit=0.85
+-crash_restarts=5
+-degree=0.1
+-directory=C:\Users\erist836\Documents\GitHub\mbaod_sim\non-linear\modelfit_dir7\
+-display_iterations=1
+-handle_crashes=1
+-handle_msfo=0
+-large_omega_cv_limit=0.8
+-large_sigma_cv_limit=0.8
+-large_theta_cv_limit=0.5
+-last_est_complete=0
+-lsf_sleep=3
+-min_retries=0
+-missing_data_token=-99
+-near_bound_sign_digits=2
+-near_zero_boundary_limit=0.01
+-nice=19
+-nm_output=ext,cov,cor,coi,phi
+-nm_version=default
+-nmfe=1
+-nmqual=0
+-nodes=0
+-parafile=none
+-picky=0
+-prepend_model_file_name=0
+-quick_summarize=0
+-retries=0
+-rplots=0
+-run_on_lsf=0
+-run_on_sge=0
+-run_on_slurm=0
+-run_on_torque=0
+-run_on_ud=0
+-run_on_zink=0
+-seed=306487
+-send_email=0
+-shrinkage=0
+-sign_digits_off_diagonals=2
+-significant_digits_accept=0
+-standardised_output=0
+-template_directory_rplots=C:/STRAWB~1/perl/site/lib/PsN_4_5_16/R-scripts
+-template_file_rplots=execute_default.R
+-threads=5
+-tweak_inits=1
+-verbose=0
+-zip=0
